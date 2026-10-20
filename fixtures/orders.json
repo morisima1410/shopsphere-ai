@@ -1,0 +1,59 @@
+[
+  {
+    "id": "ORD-2026-901",
+    "userId": 1,
+    "date": "2026-10-10T14:32:00Z",
+    "status": "delivered",
+    "total": 149.97,
+    "currency": "USD",
+    "items": [
+      {
+        "productId": 1,
+        "title": "Essence Mascara Lash Princess",
+        "price": 9.99,
+        "quantity": 2,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png"
+      },
+      {
+        "productId": 2,
+        "title": "Eyeshadow Palette with Mirror",
+        "price": 19.99,
+        "quantity": 1,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Alex Mercer",
+      "address": "742 Evergreen Terrace",
+      "city": "Springfield",
+      "postalCode": "97477",
+      "country": "United States"
+    },
+    "paymentMethod": "Credit Card (ending in 4242)"
+  },
+  {
+    "id": "ORD-2026-902",
+    "userId": 1,
+    "date": "2026-10-11T09:15:00Z",
+    "status": "in_transit",
+    "total": 89.99,
+    "currency": "USD",
+    "items": [
+      {
+        "productId": 5,
+        "title": "Red Nail Polish",
+        "price": 8.99,
+        "quantity": 1,
+        "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/thumbnail.png"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Alex Mercer",
+      "address": "742 Evergreen Terrace",
+      "city": "Springfield",
+      "postalCode": "97477",
+      "country": "United States"
+    },
+    "paymentMethod": "PayPal"
+  }
+]

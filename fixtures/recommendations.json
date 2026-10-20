@@ -1,0 +1,23 @@
+[
+  {
+    "id": "rec_01",
+    "category": "beauty",
+    "reason": "Based on your interest in cosmetics & daily care",
+    "productIds": [1, 2, 3, 4, 5],
+    "relevanceScore": 0.94
+  },
+  {
+    "id": "rec_02",
+    "category": "fragrances",
+    "reason": "Frequently bought together with premium beauty sets",
+    "productIds": [6, 7, 8],
+    "relevanceScore": 0.88
+  },
+  {
+    "id": "rec_03",
+    "category": "groceries",
+    "reason": "Top trending weekly essentials",
+    "productIds": [16, 17, 18],
+    "relevanceScore": 0.79
+  }
+]

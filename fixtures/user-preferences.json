@@ -1,0 +1,14 @@
+{
+  "userId": 1,
+  "theme": "system",
+  "currency": "USD",
+  "favoriteCategories": ["beauty", "fragrances", "smartphones", "laptops"],
+  "pricePreference": "balanced",
+  "enablePersonalizedRecommendations": true,
+  "notifications": {
+    "priceAlerts": true,
+    "orderUpdates": true,
+    "promotions": false
+  },
+  "recentlyViewedProductIds": [1, 2, 5, 8]
+}

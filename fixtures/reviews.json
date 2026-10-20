@@ -1,0 +1,29 @@
+[
+  {
+    "id": 101,
+    "productId": 1,
+    "reviewerName": "Sophia Taylor",
+    "reviewerEmail": "sophia.taylor@example.com",
+    "rating": 5,
+    "comment": "Exceptional formula! Lasts all day without flaking. Highly recommended.",
+    "date": "2026-09-18T10:20:00Z"
+  },
+  {
+    "id": 102,
+    "productId": 1,
+    "reviewerName": "Liam Davies",
+    "reviewerEmail": "liam.davies@example.com",
+    "rating": 4,
+    "comment": "Great value for money. Very easy application.",
+    "date": "2026-09-22T14:45:00Z"
+  },
+  {
+    "id": 103,
+    "productId": 2,
+    "reviewerName": "Emma Watson",
+    "reviewerEmail": "emma.w@example.com",
+    "rating": 5,
+    "comment": "Vibrant colors and very smooth blending. The built-in mirror is super convenient.",
+    "date": "2026-10-02T18:10:00Z"
+  }
+]

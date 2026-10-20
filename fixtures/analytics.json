@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "totalRevenue": 48250.75,
+    "totalOrders": 1284,
+    "averageOrderValue": 37.58,
+    "activeUsers": 3420,
+    "conversionRate": 3.82
+  },
+  "topCategories": [
+    { "category": "beauty", "sales": 15400, "units": 612 },
+    { "category": "smartphones", "sales": 18200, "units": 94 },
+    { "category": "fragrances", "sales": 8900, "units": 240 },
+    { "category": "groceries", "sales": 5750, "units": 830 }
+  ],
+  "recentActivities": [
+    { "type": "order_placed", "orderId": "ORD-2026-902", "timestamp": "2026-10-11T09:15:00Z", "amount": 89.99 },
+    { "type": "assistant_query", "query": "Find me hypoallergenic moisturizers", "timestamp": "2026-10-11T09:22:10Z" },
+    { "type": "user_signup", "email": "new.shopper@example.com", "timestamp": "2026-10-11T10:04:45Z" }
+  ]
+}
