@@ -120,10 +120,12 @@ export const Footer: React.FC = () => {
           <div className="space-y-3.5">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">Discover</h4>
             <ul className="space-y-2.5 text-xs text-stone-400">
-              <li><a href="/#trending" className="hover:text-cyan-300 transition-colors">Trending Drops</a></li>
-              <li><a href="/#categories" className="hover:text-cyan-300 transition-colors">Curated Categories</a></li>
-              <li><a href="/#recommendations" className="hover:text-cyan-300 transition-colors">Neural Curation Engine</a></li>
-              <li><a href="/#benefits" className="hover:text-cyan-300 transition-colors">Shopping Intelligence</a></li>
+              <li><Link to="/shop" className="hover:text-cyan-300 transition-colors">All Products Catalog</Link></li>
+              <li><Link to="/orders" className="hover:text-cyan-300 transition-colors">Orders & Tracking</Link></li>
+              <li><Link to="/compare" className="hover:text-cyan-300 transition-colors">Product Comparison Matrix</Link></li>
+              <li><Link to="/reviews" className="hover:text-cyan-300 transition-colors">Customer Reviews</Link></li>
+              <li><Link to="/wishlist" className="hover:text-cyan-300 transition-colors">Saved Wishlist</Link></li>
+              <li><Link to="/admin" className="hover:text-cyan-300 transition-colors">Admin Console</Link></li>
             </ul>
           </div>
 

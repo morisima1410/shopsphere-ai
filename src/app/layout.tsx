@@ -5,6 +5,7 @@
 import React from 'react';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
+import { AIShoppingAssistantChat } from '@/features/shopping-assistant';
 import { Providers } from './providers';
 
 export interface RootLayoutProps {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
         <Footer />
+        <AIShoppingAssistantChat />
       </div>
     </Providers>
   );

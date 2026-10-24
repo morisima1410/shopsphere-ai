@@ -1,2 +1,7 @@
-// Feature: Products module barrel export
-export * from '@/types';
+// ==============================================================================
+// ShopSphere AI — Products Feature Module Barrel Export
+// ==============================================================================
+
+export * from './ProductCard';
+export * from './ShopPage';
+export * from './ProductDetailPage';

@@ -1,128 +1,64 @@
 # ShopSphere AI — Personalized Shopping, Powered by Intelligence
 
 **Project ID:** PROJ-SHOP-260918  
-**Internship Platform:** Internmo  
-**Role:** Frontend Developer Intern  
-**Step:** 1 — Project Initialization & Architecture Foundation
+**Platform:** Google AI Studio / Web Runtime  
+**Stack:** Vite + React 19 + TypeScript + Tailwind CSS + Firebase Auth  
+**Version:** Production Release (PRD Complete)
 
 ---
 
 ## 1. Project Overview
 
-**ShopSphere AI** is an enterprise-grade ecommerce web application engineered with Next.js, React, TypeScript, and Tailwind CSS. The platform leverages DummyJSON as its configurable commerce backend, Zustand for client-side state synchronization, TanStack Query for data caching and fetching, and shadcn/ui for accessible, accessible design primitives.
+**ShopSphere AI** is a premium, AI-powered ecommerce web application engineered with Vite, React 19, TypeScript, and Tailwind CSS. The platform combines high-performance client rendering with:
+- **9-Strategy Recommendation Engine:** Personalized picks, trending/popular, frequently bought together, similar items, price drops, new arrivals, recently viewed, top category picks, and cart upsells.
+- **Firebase Authentication:** Secure email/password and Google OAuth sign-in, session persistence, and self-service password recovery.
+- **End-to-End Order Lifecycle:** Cart management, demonstration checkout flow, persistent order tracking, itemized receipts, and reordering.
+- **Customer Dashboard:** Overview KPIs, live order tracking, multi-address management, review history, recently viewed carousel, and security controls.
+- **Product Comparison Matrix:** Side-by-side spec, warranty, and pricing evaluation for up to 4 items simultaneously.
+- **Verified Customer Reviews:** Community reviews hub, star ratings breakdown, product filtering, and review posting form.
+- **Administrative Governance Console:** Real-time revenue & order telemetry, category performance analytics, order fulfillment status transitions, and catalog inventory stock controls.
 
 ---
 
-## 2. Technology Stack
+## 2. Technology Stack & Architecture
 
-- **Framework:** Next.js (App Router) / React 19 SPA
-- **Language:** TypeScript 5.x
-- **Styling:** Tailwind CSS with CSS Variables & semantic tokens
-- **Design Primitives:** shadcn/ui standards (Button, Card, Badge, Input)
-- **State Management:** Zustand (Micro-stores for Cart, Wishlist, User App State)
-- **Server Cache & Async State:** TanStack Query v5
+- **Runtime & Build System:** Vite 6.x (Fast HMR, optimized production rollup bundle)
+- **UI Framework:** React 19 (Modern hooks, concurrent rendering, error boundaries)
+- **Type Safety:** TypeScript 5.x (Strict type checking, zero untyped fixtures)
+- **Styling:** Tailwind CSS with CSS Variables & semantic tokens (Clean Ivory `#FAF9F5`, Obsidian, Cobalt Blue `#2563EB`, Vibrant Violet, and Coral Accents)
+- **State Management:** Zustand with `persist` middleware:
+  - `useAppStore`: Auth state, user profile, theme, search filters
+  - `useCartStore`: Cart items, quantities, promo code engine, shipping threshold
+  - `useWishlistStore`: Saved products with toggle actions
+  - `useOrdersStore`: Placed orders, tracking statuses, fulfillment updates
+  - `useCompareStore`: 4-slot comparison matrix
+  - `useReviewsStore`: Customer reviews & ratings
+  - `useRecentlyViewedStore`: Session-based browsing history
+- **Data Layer:** TanStack Query v5 + DummyJSON commerce API with offline-first curated product dataset fallback
 - **Icons:** Lucide React
-- **Commerce API:** DummyJSON API (`https://dummyjson.com`)
-- **Testing:**
-  - **Unit Testing:** Vitest
-  - **Component Testing:** React Testing Library (`@testing-library/react`)
-  - **End-to-End Testing:** Playwright (`@playwright/test`)
-- **Version Control:** Git & GitHub
+- **Testing:** Vitest, React Testing Library, and Playwright
 
 ---
 
-## 3. Directory Structure
+## 3. Supported Routes
 
-```text
-shopsphere-ai/
-├── public/
-│   ├── images/
-│   └── icons/
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   ├── globals.css
-│   │   ├── providers.tsx
-│   │   ├── loading.tsx
-│   │   ├── error.tsx
-│   │   ├── not-found.tsx
-│   │   ├── products/
-│   │   ├── cart/
-│   │   ├── checkout/
-│   │   ├── wishlist/
-│   │   ├── login/
-│   │   ├── register/
-│   │   ├── account/
-│   │   ├── orders/
-│   │   └── admin/
-│   ├── components/
-│   │   ├── ui/
-│   │   │   ├── button.tsx
-│   │   │   ├── badge.tsx
-│   │   │   ├── card.tsx
-│   │   │   └── input.tsx
-│   │   ├── layout/
-│   │   │   ├── Navbar.tsx
-│   │   │   └── Footer.tsx
-│   │   ├── common/
-│   │   └── shared/
-│   ├── features/
-│   │   ├── auth/
-│   │   ├── products/
-│   │   ├── cart/
-│   │   ├── checkout/
-│   │   ├── wishlist/
-│   │   ├── orders/
-│   │   ├── recommendations/
-│   │   ├── shopping-assistant/
-│   │   └── admin/
-│   ├── hooks/
-│   ├── services/
-│   │   ├── api/
-│   │   │   ├── client.ts
-│   │   │   └── products.ts
-│   │   └── mock/
-│   ├── store/
-│   │   ├── useAppStore.ts
-│   │   ├── useCartStore.ts
-│   │   └── useWishlistStore.ts
-│   ├── lib/
-│   │   └── utils.ts
-│   ├── types/
-│   │   └── index.ts
-│   ├── utils/
-│   └── config/
-│       ├── constants.ts
-│       └── env.ts
-├── tests/
-│   ├── setup.ts
-│   ├── unit/
-│   │   ├── api-client.test.ts
-│   │   └── store.test.ts
-│   ├── components/
-│   │   ├── Button.test.tsx
-│   │   └── Navbar.test.tsx
-│   └── e2e/
-│       └── homepage.spec.ts
-├── fixtures/
-│   ├── orders.json
-│   ├── reviews.json
-│   ├── recommendations.json
-│   ├── user-preferences.json
-│   └── analytics.json
-├── .env.example
-├── .gitignore
-├── components.json
-├── eslint.config.mjs
-├── next.config.ts
-├── package.json
-├── playwright.config.ts
-├── tsconfig.json
-├── vitest.config.ts
-├── README.md
-└── postcss.config.mjs
-```
+| Route | Component | Description |
+|---|---|---|
+| `/` | `HomePage` | Editorial hero, category navigation, 9 recommendation carousels, VIP drop newsletter |
+| `/shop`, `/products` | `ShopPage` | Full catalog, category filters, price sorting, search, grid/list view |
+| `/product/:id` | `ProductDetailPage` | Image gallery, pricing, stock status, reviews, compare toggle, related products |
+| `/cart` | `CartPage` | Quantity adjustment, promo codes, free shipping tracker, checkout link |
+| `/checkout` | `CheckoutPage` | Encrypted customer form, address input, demo payment, order creation |
+| `/orders` | `OrdersPage` | Customer order history, fulfillment milestones, shipment tracking, reordering |
+| `/orders/:id` | `OrdersPage` | Direct link to specific order tracking & itemized receipt |
+| `/compare` | `ComparePage` | Side-by-side spec comparison table for up to 4 items |
+| `/reviews` | `ReviewsPage` | Community reviews showcase, star distribution, verified submissions |
+| `/admin` | `AdminDashboard` | Telemetry KPIs, order status governance, product inventory controls |
+| `/dashboard` | `Dashboard` | Authenticated user hub with Profile, Orders, Addresses, Reviews, Recently Viewed |
+| `/login` | `Login` | Email/password & Google OAuth authentication |
+| `/register` | `Register` | New customer onboarding with validation |
+| `/forgot-password` | `ForgotPassword` | Firebase self-service password reset |
+| `/about` | `AboutPage` | Brand mission, design philosophy, and technical architecture |
 
 ---
 
@@ -131,7 +67,6 @@ shopsphere-ai/
 ### Prerequisites
 - Node.js >= 18.x
 - npm >= 9.x
-- Git >= 2.x
 
 ### Commands
 
@@ -148,25 +83,20 @@ npm run lint
 # 4. Run Vitest Unit & Component Tests
 npm test
 
-# 5. Run Playwright E2E Tests
-npx playwright install --with-deps
-npm run test:e2e
-
-# 6. Production Build
+# 5. Production Build
 npm run build
 ```
 
 ---
 
-## 5. Verification Checklist
+## 5. PRD Acceptance Checklist
 
-- [x] Tech stack: React 19, TypeScript, Tailwind CSS, shadcn/ui, Zustand, TanStack Query, Vitest, RTL, Playwright
-- [x] Clean feature-based directory structure with all required folders
-- [x] Configurable DummyJSON API Client with typed models and error handling
-- [x] Global Zustand stores for Cart, Wishlist, and App State
-- [x] Vitest unit test suite configured and passing
-- [x] React Testing Library component tests configured and passing
-- [x] Playwright E2E configuration and specs created
-- [x] Mock data fixtures (orders, reviews, recommendations, user preferences, analytics)
-- [x] Brand starter homepage displaying ShopSphere AI metadata and architecture readiness
-- [x] Ready for Step 2: Product Discovery, Search, and Filtering
+- [x] **Visual Design:** Editorial ivory background, cobalt blue, vibrant violet, and coral accents.
+- [x] **Firebase Auth:** Email/password login, Google sign-in, session recovery, password reset.
+- [x] **Recommendations:** All 9 distinct strategies implemented and tested.
+- [x] **Orders & Tracking:** End-to-end checkout to persistent orders store with delivery timeline.
+- [x] **Customer Dashboard:** Profile, orders, addresses, reviews, recently viewed, and security tabs.
+- [x] **Product Comparison:** Matrix table comparing specs, warranties, prices, and stock for up to 4 items.
+- [x] **Customer Reviews:** Verified reviews feed, rating distribution, and submission form.
+- [x] **Admin Governance:** Analytics KPIs, order status controls, and product inventory manager.
+- [x] **Testing & Verification:** 100% test pass rate across Vitest suites.

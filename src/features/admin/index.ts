@@ -1,2 +1,1 @@
-// Feature: Admin module placeholder
-export * from '@/types';
+export * from './AdminDashboard';

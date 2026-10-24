@@ -1,2 +1,5 @@
-// Feature: Recommendations module placeholder
-export * from '@/types';
+// ==============================================================================
+// ShopSphere AI — Recommendations Feature Barrel Export
+// ==============================================================================
+
+export * from './recommendationEngine';

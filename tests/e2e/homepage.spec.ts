@@ -27,12 +27,12 @@ test.describe('ShopSphere AI App & Authentication E2E', () => {
     await expect(page.getByRole('heading', { name: /welcome back/i })).toBeVisible();
     await expect(page.getByLabel(/email address/i)).toBeVisible();
     await expect(page.getByLabel(/^password/i)).toBeVisible();
-    await expect(page.getByRole('button', { name: /sign in$/i })).toBeVisible();
+    await expect(page.locator('main').getByRole('button', { name: /sign in$/i })).toBeVisible();
   });
 
   test('should validate empty login form submission', async ({ page }) => {
     await page.goto('/login');
-    await page.getByRole('button', { name: /sign in$/i }).click();
+    await page.locator('main').getByRole('button', { name: /sign in$/i }).click();
     await expect(page.getByText(/email address is required/i)).toBeVisible();
     await expect(page.getByText(/password is required/i)).toBeVisible();
   });

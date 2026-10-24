@@ -87,7 +87,7 @@ export const ForgotPassword: React.FC = () => {
               <div className="space-y-1 text-xs sm:text-sm text-emerald-900 dark:text-emerald-200">
                 <p className="font-bold">Reset instructions sent!</p>
                 <p className="text-xs text-emerald-800 dark:text-emerald-300">
-                  A password recovery email has been dispatched to <strong className="font-mono text-emerald-950 dark:text-emerald-100">{email}</strong>. Please check your inbox and follow the link to create a new password.
+                  A password recovery email has been dispatched to <strong className="font-mono text-emerald-950 dark:text-emerald-100">{email}</strong>. Reset instructions simulated for testing and demo. Please check your inbox and follow the link to create a new password.
                 </p>
               </div>
             </div>

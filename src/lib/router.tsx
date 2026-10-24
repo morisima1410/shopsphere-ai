@@ -41,7 +41,7 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const navigate = (path: string, options?: { replace?: boolean }) => {
+  const navigate = React.useCallback((path: string, options?: { replace?: boolean }) => {
     if (typeof window !== 'undefined') {
       if (options?.replace) {
         window.history.replaceState({}, '', path);
@@ -53,10 +53,12 @@ export function RouterProvider({ children }: { children: React.ReactNode }) {
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-  };
+  }, []);
+
+  const contextValue = React.useMemo(() => ({ currentPath, navigate }), [currentPath, navigate]);
 
   return (
-    <RouterContext.Provider value={{ currentPath, navigate }}>
+    <RouterContext.Provider value={contextValue}>
       {children}
     </RouterContext.Provider>
   );

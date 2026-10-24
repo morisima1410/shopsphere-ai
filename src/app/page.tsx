@@ -221,13 +221,16 @@ export default function HomePage() {
                   <span>{APP_CONFIG.platform} — {APP_CONFIG.internshipRole}</span>
                 </span>
                 <span className="inline-flex items-center rounded-full bg-stone-100/90 px-3 py-1 text-xs font-bold text-stone-800 dark:bg-stone-800/80 dark:text-stone-200 border border-stone-200 dark:border-stone-700">
-                  Welcome to {APP_CONFIG.name}
+                  Curated Commerce Feed
                 </span>
               </div>
 
               {/* Grand Editorial Headline */}
               <div className="space-y-3">
                 <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.05]">
+                  <span className="block text-lg sm:text-xl font-bold tracking-normal text-stone-500 dark:text-stone-400 mb-2">
+                    Welcome to {APP_CONFIG.name}
+                  </span>
                   Your Personal <br className="hidden sm:inline" />
                   Shopping Assistant, <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-violet-600 to-rose-500">
@@ -247,7 +250,7 @@ export default function HomePage() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
-                <a href="#trending">
+                <Link to="/shop">
                   <Button
                     size="lg"
                     className="h-12 px-7 text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xl shadow-blue-600/25 gap-2.5 transition-all hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
@@ -255,7 +258,7 @@ export default function HomePage() {
                     <span>Explore Collection</span>
                     <ArrowRight className="h-4 w-4" />
                   </Button>
-                </a>
+                </Link>
 
                 {currentUser ? (
                   <Link to="/dashboard">

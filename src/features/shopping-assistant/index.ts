@@ -1,2 +1,2 @@
-// Feature: Shopping Assistant module placeholder
-export * from '@/types';
+export * from './AIPersonalizationModal';
+export * from './AIShoppingAssistantChat';
