@@ -1,5 +1,6 @@
 // ==============================================================================
 // ShopSphere AI — Administrative Console & Inventory Governance (PROJ-SHOP-260918)
+// Theme: Emerald Green (#059669) + Pure White (#FFFFFF) + Charcoal (#1F2937)
 // ==============================================================================
 
 import React, { useState } from 'react';
@@ -82,37 +83,37 @@ export const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F5] text-slate-900 dark:bg-[#080B11] dark:text-slate-50 transition-colors pb-24">
+    <div className="min-h-screen bg-[#F9FAFB] text-[#1F2937] pb-24">
       {/* Top Banner */}
-      <section className="border-b border-stone-200/80 bg-white dark:border-stone-800 dark:bg-stone-900/60 py-10 sm:py-14">
+      <section className="border-b border-gray-200 bg-white py-10 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-800 dark:bg-violet-950/80 dark:text-violet-300">
+                <span className="rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800">
                   ShopSphere Governance
                 </span>
-                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-800 dark:bg-blue-950/80 dark:text-blue-300">
+                <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-bold text-gray-700">
                   Live Operations
                 </span>
               </div>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+              <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#1F2937]">
                 Admin Console
               </h1>
-              <p className="text-sm text-stone-500 font-normal">
+              <p className="text-sm text-gray-500 font-normal">
                 Real-time commerce telemetry, inventory controls, and order dispatch management.
               </p>
             </div>
 
             {/* Navigation Tabs */}
-            <div className="flex items-center gap-2 rounded-2xl bg-stone-100 p-1.5 dark:bg-stone-800">
+            <div className="flex items-center gap-2 rounded-2xl bg-gray-100 p-1.5">
               <button
                 type="button"
                 onClick={() => setActiveTab('overview')}
                 className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   activeTab === 'overview'
-                    ? 'bg-white text-slate-900 shadow-sm dark:bg-stone-900 dark:text-white'
-                    : 'text-stone-600 hover:text-slate-900 dark:text-stone-300'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-[#1F2937]'
                 }`}
               >
                 Overview & KPIs
@@ -122,8 +123,8 @@ export const AdminDashboard: React.FC = () => {
                 onClick={() => setActiveTab('orders')}
                 className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   activeTab === 'orders'
-                    ? 'bg-white text-slate-900 shadow-sm dark:bg-stone-900 dark:text-white'
-                    : 'text-stone-600 hover:text-slate-900 dark:text-stone-300'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-[#1F2937]'
                 }`}
               >
                 Orders ({orders.length})
@@ -133,8 +134,8 @@ export const AdminDashboard: React.FC = () => {
                 onClick={() => setActiveTab('inventory')}
                 className={`rounded-xl px-4 py-2 text-xs font-bold transition-all cursor-pointer ${
                   activeTab === 'inventory'
-                    ? 'bg-white text-slate-900 shadow-sm dark:bg-stone-900 dark:text-white'
-                    : 'text-stone-600 hover:text-slate-900 dark:text-stone-300'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-[#1F2937]'
                 }`}
               >
                 Catalog Inventory
@@ -151,15 +152,15 @@ export const AdminDashboard: React.FC = () => {
           <div className="space-y-8 animate-in fade-in">
             {/* KPI Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-xs">
+              <Card className="border-gray-200 bg-white shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Total Revenue
                   </CardTitle>
                   <DollarSign className="h-4 w-4 text-emerald-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl font-black text-[#1F2937]">
                     {formatCurrency(liveTotalRevenue)}
                   </div>
                   <p className="mt-1 text-[11px] text-emerald-600 font-bold flex items-center gap-1">
@@ -169,63 +170,63 @@ export const AdminDashboard: React.FC = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-xs">
+              <Card className="border-gray-200 bg-white shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Total Orders
                   </CardTitle>
-                  <ShoppingBag className="h-4 w-4 text-blue-600" />
+                  <ShoppingBag className="h-4 w-4 text-emerald-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl font-black text-[#1F2937]">
                     {liveOrdersCount.toLocaleString()}
                   </div>
-                  <p className="mt-1 text-[11px] text-blue-600 font-bold">100% automated dispatch</p>
+                  <p className="mt-1 text-[11px] text-emerald-600 font-bold">100% automated dispatch</p>
                 </CardContent>
               </Card>
 
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-xs">
+              <Card className="border-gray-200 bg-white shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Avg Order Value
                   </CardTitle>
-                  <TrendingUp className="h-4 w-4 text-violet-600" />
+                  <TrendingUp className="h-4 w-4 text-emerald-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl font-black text-[#1F2937]">
                     {formatCurrency(analyticsData.summary.averageOrderValue)}
                   </div>
-                  <p className="mt-1 text-[11px] text-stone-500">Premium curation uplift</p>
+                  <p className="mt-1 text-[11px] text-gray-500">Premium curation uplift</p>
                 </CardContent>
               </Card>
 
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-xs">
+              <Card className="border-gray-200 bg-white shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Active Shoppers
                   </CardTitle>
-                  <Users className="h-4 w-4 text-rose-600" />
+                  <Users className="h-4 w-4 text-emerald-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl font-black text-[#1F2937]">
                     {analyticsData.summary.activeUsers.toLocaleString()}
                   </div>
-                  <p className="mt-1 text-[11px] text-rose-600 font-bold">Global session active</p>
+                  <p className="mt-1 text-[11px] text-emerald-600 font-bold">Global session active</p>
                 </CardContent>
               </Card>
 
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-xs">
+              <Card className="border-gray-200 bg-white shadow-sm">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Conversion Rate
                   </CardTitle>
-                  <Activity className="h-4 w-4 text-cyan-600" />
+                  <Activity className="h-4 w-4 text-emerald-600" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-black text-slate-900 dark:text-white">
+                  <div className="text-2xl font-black text-[#1F2937]">
                     {analyticsData.summary.conversionRate}%
                   </div>
-                  <p className="mt-1 text-[11px] text-cyan-600 font-bold">+0.6% AI assistant uplift</p>
+                  <p className="mt-1 text-[11px] text-emerald-600 font-bold">+0.6% AI assistant uplift</p>
                 </CardContent>
               </Card>
             </div>
@@ -233,10 +234,10 @@ export const AdminDashboard: React.FC = () => {
             {/* Category Breakdown & Recent Activities 2-Column Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Category Sales Breakdown (7 Cols) */}
-              <div className="lg:col-span-7 rounded-3xl border border-stone-200/90 bg-white p-6 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-5">
-                <h2 className="text-base font-bold text-slate-900 dark:text-white flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
+              <div className="lg:col-span-7 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm space-y-5">
+                <h2 className="text-base font-bold text-[#1F2937] flex items-center justify-between border-b border-gray-100 pb-3">
                   <span>Category Revenue Contribution</span>
-                  <span className="text-xs font-normal text-stone-400">Past 30 Days</span>
+                  <span className="text-xs font-normal text-gray-400">Past 30 Days</span>
                 </h2>
 
                 <div className="space-y-4">
@@ -246,14 +247,14 @@ export const AdminDashboard: React.FC = () => {
                     return (
                       <div key={cat.category} className="space-y-1.5 text-xs">
                         <div className="flex justify-between items-center font-bold">
-                          <span className="capitalize text-slate-900 dark:text-white">{cat.category}</span>
-                          <span className="font-mono text-blue-600 dark:text-blue-400">
+                          <span className="capitalize text-[#1F2937]">{cat.category}</span>
+                          <span className="font-mono text-emerald-600">
                             {formatCurrency(cat.sales)} ({cat.units} units)
                           </span>
                         </div>
-                        <div className="h-2 rounded-full bg-stone-100 dark:bg-stone-800 overflow-hidden">
+                        <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
                           <div
-                            className="h-full bg-gradient-to-r from-blue-600 to-violet-600 rounded-full"
+                            className="h-full bg-emerald-600 rounded-full"
                             style={{ width: `${percentage}%` }}
                           />
                         </div>
@@ -264,15 +265,15 @@ export const AdminDashboard: React.FC = () => {
               </div>
 
               {/* Recent Activity Log (5 Cols) */}
-              <div className="lg:col-span-5 rounded-3xl border border-stone-200/90 bg-white p-6 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-4">
-                <h2 className="text-base font-bold text-slate-900 dark:text-white border-b border-stone-100 dark:border-stone-800 pb-3">
+              <div className="lg:col-span-5 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm space-y-4">
+                <h2 className="text-base font-bold text-[#1F2937] border-b border-gray-100 pb-3">
                   System Activity Log
                 </h2>
 
                 <div className="space-y-3.5 text-xs">
                   {analyticsData.recentActivities.map((act, index) => (
-                    <div key={index} className="flex items-start gap-3 p-2.5 rounded-2xl bg-stone-50 dark:bg-stone-800/60">
-                      <div className="h-8 w-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 dark:bg-blue-950 dark:text-blue-300 mt-0.5">
+                    <div key={index} className="flex items-start gap-3 p-2.5 rounded-2xl bg-gray-50">
+                      <div className="h-8 w-8 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center shrink-0 mt-0.5">
                         {act.type === 'order_placed' ? (
                           <ShoppingBag className="h-4 w-4" />
                         ) : act.type === 'assistant_query' ? (
@@ -282,14 +283,14 @@ export const AdminDashboard: React.FC = () => {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-bold text-slate-900 dark:text-white">
+                        <p className="font-bold text-[#1F2937]">
                           {act.type === 'order_placed'
                             ? `Order Placed: ${act.orderId} (${formatCurrency(act.amount || 0)})`
                             : act.type === 'assistant_query'
                             ? `Style Advisor: "${act.query}"`
                             : `New Shopper Registered: ${act.email}`}
                         </p>
-                        <p className="text-[10px] text-stone-400">
+                        <p className="text-[10px] text-gray-400">
                           {new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </p>
                       </div>
@@ -307,13 +308,13 @@ export const AdminDashboard: React.FC = () => {
             {/* Search & Filter Toolbar */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="relative w-full sm:w-80">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="Filter by Order ID or customer..."
                   value={orderSearch}
                   onChange={(e) => setOrderSearch(e.target.value)}
-                  className="pl-10 h-10 text-xs rounded-xl"
+                  className="pl-10 h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                 />
               </div>
 
@@ -324,8 +325,8 @@ export const AdminDashboard: React.FC = () => {
                     onClick={() => setOrderStatusFilter(st)}
                     className={`rounded-full px-3.5 py-1.5 text-xs font-bold capitalize transition-all cursor-pointer ${
                       orderStatusFilter === st
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300'
+                        ? 'bg-emerald-600 text-white shadow-sm'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
                     {st.replace('_', ' ')}
@@ -335,48 +336,48 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             {/* Orders Table */}
-            <div className="overflow-x-auto rounded-3xl border border-stone-200/90 bg-white shadow-xl dark:border-stone-800 dark:bg-stone-900">
+            <div className="overflow-x-auto rounded-3xl border border-gray-200 bg-white shadow-xl">
               <table className="w-full text-left border-collapse text-xs min-w-[750px]">
                 <thead>
-                  <tr className="border-b border-stone-100 bg-stone-50/50 dark:border-stone-800 dark:bg-stone-850/50">
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Order ID</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Customer</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Date</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Items</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Total</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Status</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Change Status</th>
+                  <tr className="border-b border-gray-100 bg-gray-50/50">
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Order ID</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Customer</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Date</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Items</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Total</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Status</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Change Status</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+                <tbody className="divide-y divide-gray-100">
                   {filteredOrders.map((order) => (
-                    <tr key={order.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/50">
-                      <td className="p-4 font-mono font-bold text-slate-900 dark:text-white">{order.id}</td>
+                    <tr key={order.id} className="hover:bg-gray-50/50">
+                      <td className="p-4 font-mono font-bold text-[#1F2937]">{order.id}</td>
                       <td className="p-4">
-                        <p className="font-bold text-slate-900 dark:text-white">
+                        <p className="font-bold text-[#1F2937]">
                           {order.shippingAddress?.fullName || 'Customer'}
                         </p>
-                        <p className="text-[10px] text-stone-400">{order.shippingAddress?.city}</p>
+                        <p className="text-[10px] text-gray-400">{order.shippingAddress?.city}</p>
                       </td>
-                      <td className="p-4 text-stone-500">
+                      <td className="p-4 text-gray-500">
                         {new Date(order.date).toLocaleDateString()}
                       </td>
-                      <td className="p-4 text-stone-600 dark:text-stone-300 font-medium">
+                      <td className="p-4 text-gray-600 font-medium">
                         {order.items.length} items
                       </td>
-                      <td className="p-4 font-black text-slate-900 dark:text-white">
+                      <td className="p-4 font-black text-[#1F2937]">
                         {formatCurrency(order.total)}
                       </td>
                       <td className="p-4">
                         <span
                           className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase ${
                             order.status === 'delivered'
-                              ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                              ? 'bg-emerald-100 text-emerald-800'
                               : order.status === 'in_transit'
-                              ? 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300'
+                              ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                               : order.status === 'processing'
-                              ? 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'
-                              : 'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300'
+                              ? 'bg-amber-100 text-amber-800'
+                              : 'bg-rose-100 text-rose-800'
                           }`}
                         >
                           {order.status.replace('_', ' ')}
@@ -386,7 +387,7 @@ export const AdminDashboard: React.FC = () => {
                         <select
                           value={order.status}
                           onChange={(e) => updateOrderStatus(order.id, e.target.value as Order['status'])}
-                          className="h-8 px-2 text-xs rounded-lg border border-stone-200 bg-white dark:border-stone-700 dark:bg-stone-800 font-semibold cursor-pointer"
+                          className="h-8 px-2 text-xs rounded-lg border border-gray-200 bg-white font-semibold cursor-pointer focus:ring-1 focus:ring-emerald-500"
                         >
                           <option value="pending">Pending</option>
                           <option value="processing">Processing</option>
@@ -408,50 +409,50 @@ export const AdminDashboard: React.FC = () => {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="relative w-full sm:w-80">
-                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-stone-400" />
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="Filter inventory by name or category..."
                   value={inventorySearch}
                   onChange={(e) => setInventorySearch(e.target.value)}
-                  className="pl-10 h-10 text-xs rounded-xl"
+                  className="pl-10 h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                 />
               </div>
 
-              <div className="text-xs font-bold text-stone-500">
+              <div className="text-xs font-bold text-gray-500">
                 Total Products: {inventoryList.length}
               </div>
             </div>
 
-            <div className="overflow-x-auto rounded-3xl border border-stone-200/90 bg-white shadow-xl dark:border-stone-800 dark:bg-stone-900">
+            <div className="overflow-x-auto rounded-3xl border border-gray-200 bg-white shadow-xl">
               <table className="w-full text-left border-collapse text-xs min-w-[700px]">
                 <thead>
-                  <tr className="border-b border-stone-100 bg-stone-50/50 dark:border-stone-800 dark:bg-stone-850/50">
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Product</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Category</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Price</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Current Stock</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Stock Status</th>
-                    <th className="p-4 font-bold text-stone-400 uppercase tracking-wider">Actions</th>
+                  <tr className="border-b border-gray-100 bg-gray-50/50">
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Product</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Category</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Price</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Current Stock</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Stock Status</th>
+                    <th className="p-4 font-bold text-gray-400 uppercase tracking-wider">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+                <tbody className="divide-y divide-gray-100">
                   {filteredInventory.map((item) => (
-                    <tr key={item.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/50">
+                    <tr key={item.id} className="hover:bg-gray-50/50">
                       <td className="p-4">
                         <div className="flex items-center gap-3">
                           <img
                             src={item.thumbnail || item.images?.[0] || ''}
                             alt={item.title}
-                            className="h-10 w-10 rounded-xl object-cover bg-stone-100 shrink-0"
+                            className="h-10 w-10 rounded-xl object-cover bg-gray-100 border border-gray-200 shrink-0"
                           />
-                          <p className="font-bold text-slate-900 dark:text-white line-clamp-1">{item.title}</p>
+                          <p className="font-bold text-[#1F2937] line-clamp-1">{item.title}</p>
                         </div>
                       </td>
-                      <td className="p-4 capitalize text-stone-600 dark:text-stone-300 font-medium">
+                      <td className="p-4 capitalize text-gray-600 font-medium">
                         {item.category}
                       </td>
-                      <td className="p-4 font-black text-slate-900 dark:text-white">
+                      <td className="p-4 font-black text-[#1F2937]">
                         {formatCurrency(item.price)}
                       </td>
                       <td className="p-4">
@@ -461,19 +462,19 @@ export const AdminDashboard: React.FC = () => {
                               type="number"
                               value={tempStockValue}
                               onChange={(e) => setTempStockValue(Number(e.target.value))}
-                              className="w-20 h-8 text-xs rounded-lg"
+                              className="w-20 h-8 text-xs rounded-lg border-gray-200 focus-visible:ring-emerald-500"
                               autoFocus
                             />
                             <Button
                               size="sm"
                               onClick={() => handleSaveStock(item.id)}
-                              className="h-8 px-2 bg-emerald-600 text-white rounded-lg cursor-pointer"
+                              className="h-8 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg cursor-pointer"
                             >
                               <Save className="h-3.5 w-3.5" />
                             </Button>
                           </div>
                         ) : (
-                          <span className="font-mono font-bold text-slate-900 dark:text-white">
+                          <span className="font-mono font-bold text-[#1F2937]">
                             {item.stock} units
                           </span>
                         )}
@@ -482,10 +483,10 @@ export const AdminDashboard: React.FC = () => {
                         <span
                           className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
                             item.stock > 10
-                              ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                              ? 'bg-emerald-100 text-emerald-800'
                               : item.stock > 0
-                              ? 'bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300'
-                              : 'bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300'
+                              ? 'bg-amber-100 text-amber-800'
+                              : 'bg-rose-100 text-rose-800'
                           }`}
                         >
                           {item.stock > 10 ? 'Optimal' : item.stock > 0 ? 'Low Stock' : 'Out of Stock'}
@@ -499,7 +500,7 @@ export const AdminDashboard: React.FC = () => {
                             setEditingStockId(item.id);
                             setTempStockValue(item.stock);
                           }}
-                          className="h-8 px-2 text-xs font-bold text-blue-600 hover:text-blue-700 cursor-pointer"
+                          className="h-8 px-2 text-xs font-bold text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 cursor-pointer"
                         >
                           <Edit2 className="h-3.5 w-3.5 mr-1" />
                           <span>Edit Stock</span>

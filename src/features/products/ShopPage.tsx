@@ -1,6 +1,7 @@
 // ==============================================================================
 // ShopSphere AI — Product Catalog & Shop Experience (PRD Section 5.2 MOD-02)
 // Complete with Quick View Modal, Advanced Filters, Rating, In-Stock, and Pagination
+// Theme: Emerald Green (#059669) + Pure White (#FFFFFF) + Charcoal (#1F2937)
 // ==============================================================================
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -176,20 +177,20 @@ export const ShopPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#FAF9F5] text-slate-900 dark:bg-[#080B11] dark:text-slate-50 transition-colors pb-24">
+    <div className="w-full bg-[#F9FAFB] text-[#1F2937] pb-24">
       {/* Header Banner */}
-      <section className="border-b border-stone-200/80 bg-white dark:border-stone-800 dark:bg-stone-900/60 py-12 sm:py-16">
+      <section className="border-b border-gray-200 bg-white py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-4 text-center sm:text-left">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3.5 py-1 text-xs font-bold text-blue-700 dark:border-blue-900 dark:bg-blue-950/60 dark:text-blue-300">
-            <Sparkles className="h-3.5 w-3.5 text-rose-500" />
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3.5 py-1 text-xs font-bold text-emerald-800">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
             <span>Curated Architectural Catalog</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-[#1F2937]">
             Explore All Collections
           </h1>
 
-          <p className="max-w-2xl text-sm sm:text-base text-stone-600 dark:text-stone-300 font-normal leading-relaxed">
+          <p className="max-w-2xl text-sm sm:text-base text-gray-500 font-normal leading-relaxed">
             Discover hyper-personalized lifestyle essentials. Calibrated for material authenticity, precision acoustic drivers, and timeless everyday carry.
           </p>
         </div>
@@ -198,23 +199,23 @@ export const ShopPage: React.FC = () => {
       {/* Main Catalog Body */}
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
         {/* Search, Filter & Sort Controls Panel */}
-        <div className="flex flex-col gap-4 rounded-3xl border border-stone-200/90 bg-white p-5 shadow-xs dark:border-stone-800 dark:bg-stone-900">
+        <div className="flex flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
             {/* Search Input */}
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400 pointer-events-none" />
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
               <Input
                 type="text"
                 placeholder="Search products by title, material, or keyword..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-11 text-xs border-stone-200 bg-stone-50/50 hover:bg-white focus:bg-white dark:border-stone-700 dark:bg-stone-800/80 rounded-xl"
+                className="pl-10 h-11 text-xs border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white focus-visible:ring-emerald-500 rounded-xl"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1 cursor-pointer"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -223,12 +224,12 @@ export const ShopPage: React.FC = () => {
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-2 shrink-0">
-              <ArrowUpDown className="h-4 w-4 text-stone-400" />
-              <span className="text-xs font-bold text-stone-600 dark:text-stone-400">Sort by:</span>
+              <ArrowUpDown className="h-4 w-4 text-gray-400" />
+              <span className="text-xs font-bold text-gray-600">Sort by:</span>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                className="h-11 rounded-xl border border-stone-200 bg-stone-50/50 px-3 text-xs font-semibold text-slate-800 hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200 cursor-pointer"
+                className="h-11 rounded-xl border border-gray-200 bg-gray-50/50 px-3 text-xs font-semibold text-[#1F2937] hover:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
               >
                 <option value="featured">Featured (Neural Fit)</option>
                 <option value="price-asc">Price: Low to High</option>
@@ -240,8 +241,8 @@ export const ShopPage: React.FC = () => {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-2 border-t border-stone-100 dark:border-stone-800 scrollbar-none">
-            <span className="text-xs font-bold text-stone-400 shrink-0 mr-1 flex items-center gap-1">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-2 border-t border-gray-100 scrollbar-none">
+            <span className="text-xs font-bold text-gray-400 shrink-0 mr-1 flex items-center gap-1">
               <Filter className="h-3.5 w-3.5" />
               <span>Category:</span>
             </span>
@@ -255,8 +256,8 @@ export const ShopPage: React.FC = () => {
                   onClick={() => setSelectedCategory(cat.slug)}
                   className={`rounded-full px-4 py-1.5 text-xs font-bold transition-all shrink-0 cursor-pointer ${
                     isSelected
-                      ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                      : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300 dark:hover:bg-stone-700'
+                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900'
                   }`}
                 >
                   {cat.name}
@@ -266,11 +267,11 @@ export const ShopPage: React.FC = () => {
           </div>
 
           {/* Secondary Controls: Price Slider, Rating, In-Stock & On-Sale */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-stone-100 dark:border-stone-800 text-xs">
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-gray-100 text-xs">
             <div className="flex flex-wrap items-center gap-5">
               {/* Price Max Slider */}
               <div className="flex items-center gap-2">
-                <span className="font-bold text-stone-600 dark:text-stone-400">Max Price:</span>
+                <span className="font-bold text-gray-600">Max Price:</span>
                 <input
                   type="range"
                   min="50"
@@ -278,18 +279,18 @@ export const ShopPage: React.FC = () => {
                   step="25"
                   value={priceMax}
                   onChange={(e) => setPriceMax(Number(e.target.value))}
-                  className="w-28 accent-blue-600 cursor-pointer"
+                  className="w-28 accent-emerald-600 cursor-pointer"
                 />
-                <span className="font-black text-blue-600 dark:text-blue-400">${priceMax}</span>
+                <span className="font-black text-emerald-600">${priceMax}</span>
               </div>
 
               {/* Min Rating Filter */}
               <div className="flex items-center gap-2">
-                <span className="font-bold text-stone-600 dark:text-stone-400">Rating:</span>
+                <span className="font-bold text-gray-600">Rating:</span>
                 <select
                   value={minRating}
                   onChange={(e) => setMinRating(Number(e.target.value))}
-                  className="h-8 px-2 text-xs rounded-lg border border-stone-200 bg-stone-50 font-medium"
+                  className="h-8 px-2 text-xs rounded-lg border border-gray-200 bg-gray-50 font-medium text-[#1F2937]"
                 >
                   <option value={0}>All Ratings</option>
                   <option value={4.5}>4.5★ & Above</option>
@@ -298,38 +299,38 @@ export const ShopPage: React.FC = () => {
               </div>
 
               {/* In-Stock Toggle */}
-              <label className="flex items-center gap-1.5 cursor-pointer font-bold text-stone-700 dark:text-stone-300">
+              <label className="flex items-center gap-1.5 cursor-pointer font-bold text-gray-700">
                 <input
                   type="checkbox"
                   checked={inStockOnly}
                   onChange={(e) => setInStockOnly(e.target.checked)}
-                  className="rounded accent-blue-600"
+                  className="rounded accent-emerald-600"
                 />
                 <span>In Stock Only</span>
               </label>
 
               {/* On-Sale Toggle */}
-              <label className="flex items-center gap-1.5 cursor-pointer font-bold text-stone-700 dark:text-stone-300">
+              <label className="flex items-center gap-1.5 cursor-pointer font-bold text-gray-700">
                 <input
                   type="checkbox"
                   checked={onSaleOnly}
                   onChange={(e) => setOnSaleOnly(e.target.checked)}
-                  className="rounded accent-blue-600"
+                  className="rounded accent-emerald-600"
                 />
                 <span>On Sale</span>
               </label>
             </div>
 
             <div className="flex items-center gap-3">
-              <span className="text-stone-500 font-medium">
-                Showing <strong className="text-slate-900 dark:text-white">{filteredProducts.length}</strong> items
+              <span className="text-gray-500 font-medium">
+                Showing <strong className="text-[#1F2937]">{filteredProducts.length}</strong> items
               </span>
 
               {hasActiveFilters && (
                 <button
                   type="button"
                   onClick={clearFilters}
-                  className="font-bold text-rose-600 hover:text-rose-700 hover:underline cursor-pointer flex items-center gap-1"
+                  className="font-bold text-emerald-600 hover:text-emerald-700 hover:underline cursor-pointer flex items-center gap-1"
                 >
                   <X className="h-3 w-3" />
                   <span>Reset Filters</span>
@@ -343,21 +344,21 @@ export const ShopPage: React.FC = () => {
         {loading ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3, 4, 5, 6].map((n) => (
-              <div key={n} className="h-80 rounded-3xl bg-stone-200/70 dark:bg-stone-800 animate-pulse" />
+              <div key={n} className="h-80 rounded-3xl bg-gray-200/70 animate-pulse" />
             ))}
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-stone-300 bg-white p-12 text-center dark:border-stone-800 dark:bg-stone-900 space-y-4">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-100 text-stone-500 dark:bg-stone-800">
+          <div className="rounded-3xl border border-dashed border-gray-300 bg-white p-12 text-center space-y-4">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 text-gray-500">
               <ShoppingBag className="h-6 w-6" />
             </div>
             <div className="space-y-1">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">No Matching Products Found</h3>
-              <p className="text-xs text-stone-500 max-w-sm mx-auto">
+              <h3 className="text-lg font-bold text-[#1F2937]">No Matching Products Found</h3>
+              <p className="text-xs text-gray-500 max-w-sm mx-auto">
                 No items match your active search, price, and category filters. Try adjusting your parameters.
               </p>
             </div>
-            <Button onClick={clearFilters} size="sm" className="bg-blue-600 hover:bg-blue-700 text-white font-bold cursor-pointer">
+            <Button onClick={clearFilters} size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold cursor-pointer">
               Clear All Filters
             </Button>
           </div>
@@ -374,7 +375,7 @@ export const ShopPage: React.FC = () => {
                       setQuickViewProduct(product);
                       setQuickViewQuantity(1);
                     }}
-                    className="absolute top-7 right-14 z-10 hidden sm:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-stone-700 hover:text-blue-600 hover:bg-white shadow-md backdrop-blur-md opacity-0 group-hover/card:opacity-100 transition-all cursor-pointer"
+                    className="absolute top-7 right-14 z-10 hidden sm:flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-gray-700 hover:text-emerald-600 hover:bg-white shadow-md backdrop-blur-md opacity-0 group-hover/card:opacity-100 transition-all cursor-pointer border border-gray-100"
                     title="Quick View"
                   >
                     <Eye className="h-3.5 w-3.5" />
@@ -385,13 +386,13 @@ export const ShopPage: React.FC = () => {
 
             {/* Pagination Controls (PRD Section 5.2) */}
             {totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 pt-6 border-t border-stone-200/80 dark:border-stone-800">
+              <div className="flex items-center justify-center gap-2 pt-6 border-t border-gray-200">
                 <Button
                   size="sm"
                   variant="outline"
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
-                  className="h-9 px-3 rounded-xl border-stone-300 gap-1 cursor-pointer"
+                  className="h-9 px-3 rounded-xl border-gray-200 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 gap-1 cursor-pointer"
                 >
                   <ChevronLeft className="h-4 w-4" />
                   <span>Previous</span>
@@ -406,8 +407,8 @@ export const ShopPage: React.FC = () => {
                       onClick={() => setCurrentPage(pNum)}
                       className={`h-9 w-9 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                         currentPage === pNum
-                          ? 'bg-blue-600 text-white shadow-sm'
-                          : 'border border-stone-200 bg-white text-stone-700 hover:bg-stone-100 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-200'
+                          ? 'bg-emerald-600 text-white shadow-sm'
+                          : 'border border-gray-200 bg-white text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200'
                       }`}
                     >
                       {pNum}
@@ -420,7 +421,7 @@ export const ShopPage: React.FC = () => {
                   variant="outline"
                   onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                   disabled={currentPage === totalPages}
-                  className="h-9 px-3 rounded-xl border-stone-300 gap-1 cursor-pointer"
+                  className="h-9 px-3 rounded-xl border-gray-200 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 gap-1 cursor-pointer"
                 >
                   <span>Next</span>
                   <ChevronRight className="h-4 w-4" />
@@ -433,23 +434,23 @@ export const ShopPage: React.FC = () => {
 
       {/* Quick View Modal (PRD Section 5.2) */}
       {quickViewProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in">
-          <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-2xl dark:border-stone-800 dark:bg-stone-900 p-6 space-y-6">
-            <div className="flex items-center justify-between border-b border-stone-100 dark:border-stone-800 pb-3">
-              <span className="rounded-full bg-blue-100 px-3 py-0.5 text-xs font-bold text-blue-700 dark:bg-blue-950 dark:text-blue-300 uppercase tracking-wider">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in">
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl p-6 space-y-6">
+            <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+              <span className="rounded-full bg-emerald-50 border border-emerald-200 px-3 py-0.5 text-xs font-bold text-emerald-700 uppercase tracking-wider">
                 {quickViewProduct.category}
               </span>
               <button
                 type="button"
                 onClick={() => setQuickViewProduct(null)}
-                className="p-1 rounded-full text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-800 cursor-pointer"
+                className="p-1 rounded-full text-gray-400 hover:bg-gray-100 hover:text-gray-700 cursor-pointer"
               >
                 <X className="h-5 w-5" />
               </button>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-stone-100 dark:bg-stone-800 border border-stone-100 dark:border-stone-700">
+              <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
                 <img
                   src={quickViewProduct.thumbnail || quickViewProduct.images?.[0] || ''}
                   alt={quickViewProduct.title}
@@ -459,28 +460,28 @@ export const ShopPage: React.FC = () => {
 
               <div className="space-y-4 text-xs">
                 <div>
-                  <h3 className="text-lg font-black text-slate-900 dark:text-white">
+                  <h3 className="text-lg font-black text-[#1F2937]">
                     {quickViewProduct.title}
                   </h3>
                   <div className="flex items-center gap-1.5 text-amber-500 font-bold mt-1">
                     <Star className="h-4 w-4 fill-amber-400" />
                     <span>{quickViewProduct.rating || '4.8'}</span>
-                    <span className="text-stone-400 font-normal">({quickViewProduct.stock} in stock)</span>
+                    <span className="text-gray-400 font-normal">({quickViewProduct.stock} in stock)</span>
                   </div>
                 </div>
 
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-black text-slate-900 dark:text-white">
+                  <span className="text-2xl font-black text-[#1F2937]">
                     {formatCurrency(calculateDiscountPrice(quickViewProduct.price, quickViewProduct.discountPercentage))}
                   </span>
                   {quickViewProduct.discountPercentage && quickViewProduct.discountPercentage > 0 && (
-                    <span className="text-stone-400 line-through">
+                    <span className="text-gray-400 line-through">
                       {formatCurrency(quickViewProduct.price)}
                     </span>
                   )}
                 </div>
 
-                <p className="text-stone-600 dark:text-stone-300 leading-relaxed font-normal">
+                <p className="text-gray-600 leading-relaxed font-normal">
                   {quickViewProduct.description}
                 </p>
 
@@ -489,7 +490,7 @@ export const ShopPage: React.FC = () => {
                     <Button
                       onClick={handleQuickViewAdd}
                       className={`flex-1 h-11 text-xs font-bold rounded-xl cursor-pointer ${
-                        quickViewAdded ? 'bg-emerald-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'
+                        quickViewAdded ? 'bg-emerald-700 text-white' : 'bg-emerald-600 hover:bg-emerald-700 text-white'
                       }`}
                     >
                       {quickViewAdded ? (
@@ -509,7 +510,7 @@ export const ShopPage: React.FC = () => {
                       variant="outline"
                       onClick={() => toggleCompare(quickViewProduct)}
                       className={`h-11 px-3 text-xs font-bold rounded-xl border ${
-                        isInCompare ? 'border-blue-600 text-blue-600' : 'border-stone-300'
+                        isInCompare ? 'border-emerald-600 text-emerald-700 bg-emerald-50' : 'border-gray-200 text-gray-700 hover:border-emerald-300'
                       }`}
                       title={isInCompare ? 'In Comparison' : 'Add to Compare'}
                     >
@@ -520,7 +521,7 @@ export const ShopPage: React.FC = () => {
                   <Link
                     to={`/product/${quickViewProduct.id}`}
                     onClick={() => setQuickViewProduct(null)}
-                    className="text-center text-[11px] font-bold text-blue-600 hover:underline pt-1"
+                    className="text-center text-[11px] font-bold text-emerald-600 hover:text-emerald-700 hover:underline pt-1"
                   >
                     View Full Product Details Page →
                   </Link>

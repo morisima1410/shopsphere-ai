@@ -1,5 +1,6 @@
 // ==============================================================================
 // ShopSphere AI — Product Detail Page Component
+// Theme: Emerald Green (#059669) + Pure White (#FFFFFF) + Charcoal (#1F2937)
 // ==============================================================================
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -100,10 +101,10 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
   if (!product) {
     return (
       <div className="mx-auto max-w-7xl px-4 py-20 text-center space-y-4">
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white">Product Not Found</h2>
-        <p className="text-sm text-stone-500">The product you are requesting is currently unavailable.</p>
+        <h2 className="text-2xl font-black text-[#1F2937]">Product Not Found</h2>
+        <p className="text-sm text-gray-500">The product you are requesting is currently unavailable.</p>
         <Link to="/shop">
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold">Return to Catalog</Button>
+          <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold">Return to Catalog</Button>
         </Link>
       </div>
     );
@@ -137,24 +138,24 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
   ).slice(0, 3);
 
   return (
-    <div className="w-full bg-[#FAF9F5] text-slate-900 dark:bg-[#080B11] dark:text-slate-50 transition-colors pb-24">
+    <div className="w-full bg-[#F9FAFB] text-[#1F2937] pb-24">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-10 animate-in fade-in">
         {/* Breadcrumb & Navigation */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-stone-200/80 pb-4 dark:border-stone-800">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 pb-4">
           <Link
             to="/shop"
-            className="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-blue-600 transition-colors dark:text-stone-400 dark:hover:text-blue-400"
+            className="inline-flex items-center gap-2 text-xs font-bold text-gray-600 hover:text-emerald-600 transition-colors"
           >
             <ArrowLeft className="h-4 w-4" />
             <span>Back to Product Catalog</span>
           </Link>
 
-          <div className="flex items-center gap-2 text-xs text-stone-400">
+          <div className="flex items-center gap-2 text-xs text-gray-400">
             <span>Storefront</span>
             <span>/</span>
             <span className="capitalize">{product.category}</span>
             <span>/</span>
-            <span className="font-semibold text-slate-800 dark:text-slate-200 truncate max-w-[200px]">
+            <span className="font-semibold text-[#1F2937] truncate max-w-[200px]">
               {product.title}
             </span>
           </div>
@@ -165,7 +166,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
           {/* Left Column: Image Gallery (7 Cols) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Primary Large Image Frame */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2 shadow-xl dark:border-stone-800 dark:bg-stone-900">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-gray-200 bg-white p-2 shadow-xl">
               <img
                 src={selectedImage || product.thumbnail}
                 alt={product.title}
@@ -184,7 +185,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                 className={`absolute top-5 right-5 flex h-10 w-10 items-center justify-center rounded-full backdrop-blur-md shadow-md transition-all cursor-pointer ${
                   isInWishlist
                     ? 'bg-rose-500 text-white shadow-rose-500/30'
-                    : 'bg-white/80 text-stone-700 hover:text-rose-500 hover:bg-white dark:bg-stone-900/80 dark:text-stone-300'
+                    : 'bg-white/80 text-gray-700 hover:text-rose-500 hover:bg-white'
                 }`}
                 aria-label={isInWishlist ? 'Remove from wishlist' : 'Save to wishlist'}
               >
@@ -202,8 +203,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                     onClick={() => setSelectedImage(img)}
                     className={`relative h-20 w-24 shrink-0 overflow-hidden rounded-xl border-2 transition-all cursor-pointer ${
                       selectedImage === img
-                        ? 'border-blue-600 shadow-md ring-2 ring-blue-600/30'
-                        : 'border-stone-200 opacity-70 hover:opacity-100 dark:border-stone-800'
+                        ? 'border-emerald-600 shadow-md ring-2 ring-emerald-600/30'
+                        : 'border-gray-200 opacity-70 hover:opacity-100 hover:border-gray-300'
                     }`}
                   >
                     <img src={img} alt={`Angle ${idx + 1}`} className="h-full w-full object-cover" />
@@ -213,8 +214,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
             )}
 
             {/* Safe Demo Notice */}
-            <div className="rounded-2xl border border-stone-200/80 bg-stone-100/60 p-4 text-xs text-stone-600 dark:border-stone-800 dark:bg-stone-900/40 dark:text-stone-400">
-              <span className="font-bold text-slate-800 dark:text-slate-200">Interactive Curation Notice: </span>
+            <div className="rounded-2xl border border-gray-200 bg-emerald-50/50 p-4 text-xs text-gray-600">
+              <span className="font-bold text-[#1F2937]">Interactive Curation Notice: </span>
               Products added to your cart persist in local session storage and seamlessly flow into the checkout demonstration.
             </div>
           </div>
@@ -223,46 +224,46 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
           <div className="lg:col-span-5 space-y-6">
             <div className="space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-700 dark:bg-blue-950/60 dark:text-blue-300">
+                <span className="rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold uppercase tracking-wider text-emerald-800">
                   {product.category}
                 </span>
 
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500 hover:text-blue-600 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-emerald-600 transition-colors cursor-pointer"
                 >
                   <Share2 className="h-3.5 w-3.5" />
                   <span>{copiedLink ? 'Link Copied!' : 'Share'}</span>
                 </button>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-[#1F2937] leading-tight">
                 {product.title}
               </h1>
 
               <div className="flex items-center gap-3 text-xs">
-                <div className="flex items-center gap-1 font-bold text-stone-800 dark:text-stone-200">
+                <div className="flex items-center gap-1 font-bold text-[#1F2937]">
                   <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
                   <span className="text-sm">{product.rating ? Number(product.rating).toFixed(1) : '4.8'}</span>
                 </div>
-                <span className="text-stone-300">•</span>
-                <span className="text-stone-500">128 Verified Ratings</span>
-                <span className="text-stone-300">•</span>
-                <Badge variant="outline" className="text-emerald-700 border-emerald-300 dark:text-emerald-400 dark:border-emerald-800 text-[11px] font-bold">
+                <span className="text-gray-300">•</span>
+                <span className="text-gray-500">128 Verified Ratings</span>
+                <span className="text-gray-300">•</span>
+                <Badge variant="outline" className="text-emerald-700 border-emerald-300 bg-emerald-50 text-[11px] font-bold">
                   {product.availabilityStatus || 'In Stock'}
                 </Badge>
               </div>
             </div>
 
             {/* Price Box */}
-            <div className="rounded-2xl border border-stone-200/90 bg-white p-5 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-1">
+            <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm space-y-1">
               <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-black text-slate-900 dark:text-white">
+                <span className="text-3xl font-black text-[#1F2937]">
                   {formatCurrency(discountedPrice)}
                 </span>
                 {hasDiscount && (
-                  <span className="text-sm font-semibold text-stone-400 line-through">
+                  <span className="text-sm font-semibold text-gray-400 line-through">
                     {formatCurrency(product.price)}
                   </span>
                 )}
@@ -272,33 +273,33 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                   </span>
                 )}
               </div>
-              <p className="text-[11px] text-stone-500">Taxes calculated at checkout • Carbon-neutral shipping included</p>
+              <p className="text-[11px] text-gray-500">Taxes calculated at checkout • Carbon-neutral shipping included</p>
             </div>
 
             {/* Description */}
-            <p className="text-sm text-stone-600 dark:text-stone-300 leading-relaxed font-normal">
+            <p className="text-sm text-gray-600 leading-relaxed font-normal">
               {product.description}
             </p>
 
             {/* Quantity Selector & Action Buttons */}
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-4">
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">Quantity</span>
-                <div className="flex items-center rounded-xl border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-800">
+                <span className="text-xs font-bold text-[#1F2937]">Quantity</span>
+                <div className="flex items-center rounded-xl border border-gray-200 bg-white">
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    className="h-9 w-9 flex items-center justify-center text-sm font-bold text-stone-600 hover:text-slate-900 dark:text-stone-300 cursor-pointer"
+                    className="h-9 w-9 flex items-center justify-center text-sm font-bold text-gray-600 hover:text-[#1F2937] cursor-pointer"
                   >
                     -
                   </button>
-                  <span className="h-9 w-10 flex items-center justify-center text-xs font-bold text-slate-900 dark:text-white">
+                  <span className="h-9 w-10 flex items-center justify-center text-xs font-bold text-[#1F2937]">
                     {quantity}
                   </span>
                   <button
                     type="button"
                     onClick={() => setQuantity((q) => q + 1)}
-                    className="h-9 w-9 flex items-center justify-center text-sm font-bold text-stone-600 hover:text-slate-900 dark:text-stone-300 cursor-pointer"
+                    className="h-9 w-9 flex items-center justify-center text-sm font-bold text-gray-600 hover:text-[#1F2937] cursor-pointer"
                   >
                     +
                   </button>
@@ -310,8 +311,8 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                   onClick={handleAddToCart}
                   className={`h-12 text-xs font-bold gap-2 rounded-xl transition-all cursor-pointer ${
                     addedAnimation
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25 active:scale-95'
+                      ? 'bg-emerald-700 text-white'
+                      : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/25 active:scale-95'
                   }`}
                 >
                   {addedAnimation ? (
@@ -330,7 +331,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                 <Button
                   onClick={handleBuyNow}
                   variant="outline"
-                  className="h-12 text-xs font-bold rounded-xl border-stone-300 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 dark:border-stone-700 dark:hover:bg-blue-950/40 cursor-pointer"
+                  className="h-12 text-xs font-bold rounded-xl border-gray-200 text-gray-800 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
                 >
                   Proceed to Checkout
                 </Button>
@@ -344,15 +345,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                   onClick={() => toggleCompare(product)}
                   className={`h-9 flex-1 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
                     isInCompare
-                      ? 'border-blue-600 bg-blue-50/80 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300'
-                      : 'border-stone-200 text-stone-600 hover:text-blue-600 dark:border-stone-800 dark:text-stone-300'
+                      ? 'border-emerald-600 bg-emerald-50 text-emerald-700'
+                      : 'border-gray-200 text-gray-600 hover:text-emerald-700 hover:border-emerald-200'
                   }`}
                 >
                   <Tag className="h-3.5 w-3.5 mr-1.5" />
                   <span>{isInCompare ? '✓ Product In Comparison' : 'Add to Comparison Matrix'}</span>
                 </Button>
                 <Link to="/compare">
-                  <Button variant="ghost" size="sm" className="h-9 px-3 text-xs font-bold rounded-xl text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/40">
+                  <Button variant="ghost" size="sm" className="h-9 px-3 text-xs font-bold rounded-xl text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700">
                     View Matrix
                   </Button>
                 </Link>
@@ -360,37 +361,37 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
             </div>
 
             {/* Quality & Trust Badges */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-stone-200/80 dark:border-stone-800">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-gray-200">
               <div className="flex items-center gap-2.5">
-                <Truck className="h-4 w-4 text-blue-600 shrink-0" />
-                <span className="text-[11px] text-stone-600 dark:text-stone-400 font-medium">Free Express Delivery</span>
+                <Truck className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span className="text-[11px] text-gray-600 font-medium">Free Express Delivery</span>
               </div>
               <div className="flex items-center gap-2.5">
-                <RefreshCw className="h-4 w-4 text-violet-600 shrink-0" />
-                <span className="text-[11px] text-stone-600 dark:text-stone-400 font-medium">30-Day Return Guarantee</span>
+                <RefreshCw className="h-4 w-4 text-emerald-600 shrink-0" />
+                <span className="text-[11px] text-gray-600 font-medium">30-Day Return Guarantee</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0" />
-                <span className="text-[11px] text-stone-600 dark:text-stone-400 font-medium">2-Year Official Warranty</span>
+                <span className="text-[11px] text-gray-600 font-medium">2-Year Official Warranty</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Customer Reviews Section */}
-        <section className="space-y-6 pt-10 border-t border-stone-200/80 dark:border-stone-800">
+        <section className="space-y-6 pt-10 border-t border-gray-200">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
                 Verified Feedback
               </span>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <h2 className="text-2xl font-black text-[#1F2937] flex items-center gap-2">
                 <span>Customer Reviews</span>
-                <span className="text-sm font-semibold text-stone-400">({productReviews.length})</span>
+                <span className="text-sm font-semibold text-gray-400">({productReviews.length})</span>
               </h2>
             </div>
             <Link to="/reviews">
-              <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl border-stone-300">
+              <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl border-gray-200 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200">
                 All Community Reviews →
               </Button>
             </Link>
@@ -400,23 +401,23 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
             {/* Reviews List (7 cols) */}
             <div className="lg:col-span-7 space-y-4">
               {productReviews.length === 0 ? (
-                <div className="rounded-2xl border border-dashed border-stone-300 p-8 text-center text-stone-500 text-xs dark:border-stone-800">
+                <div className="rounded-2xl border border-dashed border-gray-300 bg-white p-8 text-center text-gray-500 text-xs">
                   No written reviews yet for this product. Be the first to leave one below!
                 </div>
               ) : (
                 productReviews.map((rev, index) => (
                   <div
                     key={rev.id || index}
-                    className="rounded-2xl border border-stone-200/90 bg-white p-5 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-2.5"
+                    className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm space-y-2.5"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <div className="h-7 w-7 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs dark:bg-blue-950 dark:text-blue-300">
+                        <div className="h-7 w-7 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center justify-center font-bold text-xs">
                           {rev.reviewerName.charAt(0)}
                         </div>
                         <div>
-                          <p className="text-xs font-bold text-slate-900 dark:text-white">{rev.reviewerName}</p>
-                          <p className="text-[10px] text-stone-400">{new Date(rev.date).toLocaleDateString()}</p>
+                          <p className="text-xs font-bold text-[#1F2937]">{rev.reviewerName}</p>
+                          <p className="text-[10px] text-gray-400">{new Date(rev.date).toLocaleDateString()}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-0.5">
@@ -424,14 +425,14 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                           <Star
                             key={star}
                             className={`h-3.5 w-3.5 ${
-                              star <= rev.rating ? 'fill-amber-400 text-amber-400' : 'text-stone-300 dark:text-stone-700'
+                              star <= rev.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-200'
                             }`}
                           />
                         ))}
                       </div>
                     </div>
-                    <p className="text-xs text-stone-700 dark:text-stone-300 leading-relaxed font-normal">
-                      "{rev.comment}"
+                    <p className="text-xs text-gray-700 leading-relaxed font-normal">
+                      &quot;{rev.comment}&quot;
                     </p>
                   </div>
                 ))
@@ -439,29 +440,29 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
             </div>
 
             {/* Leave a Review Form (5 cols) */}
-            <div className="lg:col-span-5 rounded-3xl border border-stone-200/90 bg-white p-6 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-4">
-              <h3 className="text-base font-bold text-slate-900 dark:text-white">Write a Review</h3>
+            <div className="lg:col-span-5 rounded-3xl border border-gray-200 bg-white p-6 shadow-sm space-y-4">
+              <h3 className="text-base font-bold text-[#1F2937]">Write a Review</h3>
 
               {reviewSubmitted ? (
-                <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-xs text-emerald-800 dark:bg-emerald-950/60 dark:border-emerald-900 dark:text-emerald-300 space-y-1">
+                <div className="rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-xs text-emerald-800 space-y-1">
                   <p className="font-bold">Thank you for your review!</p>
                   <p>Your feedback has been verified and added to the community stream.</p>
                 </div>
               ) : (
                 <form onSubmit={handleReviewSubmit} className="space-y-4 text-xs">
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">Your Name</label>
+                    <label className="font-bold text-gray-700">Your Name</label>
                     <Input
                       type="text"
                       value={reviewAuthor}
                       onChange={(e) => setReviewAuthor(e.target.value)}
                       placeholder="e.g. Alex M."
-                      className="h-10 text-xs rounded-xl"
+                      className="h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                     />
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">Rating</label>
+                    <label className="font-bold text-gray-700">Rating</label>
                     <div className="flex items-center gap-2">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <button
@@ -473,32 +474,32 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                         >
                           <Star
                             className={`h-5 w-5 ${
-                              star <= reviewRating ? 'fill-amber-400 text-amber-400' : 'text-stone-300'
+                              star <= reviewRating ? 'fill-amber-400 text-amber-400' : 'text-gray-300'
                             }`}
                           />
                         </button>
                       ))}
-                      <span className="text-xs font-bold text-stone-600 dark:text-stone-400 ml-2">
+                      <span className="text-xs font-bold text-gray-600 ml-2">
                         {reviewRating} of 5 stars
                       </span>
                     </div>
                   </div>
 
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">Review Comments</label>
+                    <label className="font-bold text-gray-700">Review Comments</label>
                     <textarea
                       rows={3}
                       value={reviewComment}
                       onChange={(e) => setReviewComment(e.target.value)}
                       placeholder="Share your experience with quality, fit, or performance..."
-                      className="w-full rounded-xl border border-stone-200 bg-stone-50 p-3 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-stone-700 dark:bg-stone-800"
+                      className="w-full rounded-xl border border-gray-200 bg-gray-50 p-3 text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                       required
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full h-10 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md cursor-pointer"
+                    className="w-full h-10 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md cursor-pointer"
                   >
                     Submit Verified Review
                   </Button>
@@ -510,12 +511,12 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
 
         {/* Related Products Recommendation */}
         {relatedProducts.length > 0 && (
-          <div className="space-y-6 pt-10 border-t border-stone-200/80 dark:border-stone-800">
+          <div className="space-y-6 pt-10 border-t border-gray-200">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-600">
                 Coordinated Styling
               </span>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white">
+              <h2 className="text-2xl font-black text-[#1F2937]">
                 More From This Collection
               </h2>
             </div>

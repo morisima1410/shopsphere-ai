@@ -1,5 +1,6 @@
 // ==============================================================================
-// ShopSphere AI — Root Layout Component (PROJ-SHOP-260918 | Editorial Redesign)
+// ShopSphere AI — Root Layout Component
+// Theme: Emerald Green (#059669) + Pure White (#FFFFFF) + Charcoal (#1F2937)
 // ==============================================================================
 
 import React from 'react';
@@ -15,7 +16,7 @@ export interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <Providers>
-      <div className="flex min-h-screen flex-col bg-[#FAF9F6] text-slate-900 antialiased dark:bg-[#0B0F19] dark:text-slate-50 selection:bg-blue-600 selection:text-white">
+      <div className="flex min-h-screen flex-col bg-[#F9FAFB] text-[#1F2937] antialiased selection:bg-emerald-600 selection:text-white">
         <Navbar />
         <main className="flex-1 w-full">{children}</main>
         <Footer />

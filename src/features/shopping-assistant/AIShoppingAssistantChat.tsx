@@ -330,16 +330,16 @@ export const AIShoppingAssistantChat: React.FC = () => {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full bg-gradient-to-r from-blue-700 via-blue-600 to-violet-600 px-5 py-3.5 text-white shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer ring-4 ring-white/80 dark:ring-slate-900/80 group"
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 px-5 py-3.5 text-white shadow-2xl hover:scale-105 active:scale-95 transition-all cursor-pointer ring-4 ring-white/90 group"
           aria-label="Open AI Shopping Assistant"
         >
           <div className="relative">
-            <Sparkles className="h-5 w-5 text-rose-300 animate-pulse" />
-            <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-emerald-400 ring-2 ring-blue-700" />
+            <Sparkles className="h-5 w-5 text-white animate-pulse" />
+            <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-emerald-200 ring-2 ring-emerald-700" />
           </div>
           <div className="flex flex-col text-left">
             <span className="text-xs font-black tracking-tight leading-none">ShopSphere Assistant</span>
-            <span className="text-[10px] text-blue-100 font-semibold leading-tight">Rule-Based AI</span>
+            <span className="text-[10px] text-emerald-100 font-semibold leading-tight">Rule-Based AI</span>
           </div>
         </button>
       )}
@@ -347,26 +347,26 @@ export const AIShoppingAssistantChat: React.FC = () => {
       {/* Floating or Docked Chat Panel */}
       {isOpen && (
         <div
-          className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col rounded-3xl border border-stone-200/90 bg-[#FAF9F5] shadow-2xl dark:border-stone-800 dark:bg-stone-900 transition-all duration-300 ${
+          className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col rounded-3xl border border-gray-200 bg-[#F9FAFB] shadow-2xl transition-all duration-300 ${
             isMinimized
               ? 'h-16 w-80'
               : 'h-[580px] max-h-[85vh] w-[95vw] sm:w-[420px]'
           }`}
         >
           {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-stone-200/90 bg-white px-5 py-3.5 rounded-t-3xl dark:border-stone-800 dark:bg-stone-850 shrink-0">
+          <div className="flex items-center justify-between border-b border-gray-200 bg-white px-5 py-3.5 rounded-t-3xl shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-violet-600 text-white shadow-sm">
+              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
                 <Sparkles className="h-4 w-4" />
               </div>
               <div>
-                <h3 className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1.5">
+                <h3 className="text-xs font-black text-[#1F2937] flex items-center gap-1.5">
                   <span>Shopping Assistant</span>
-                  <Badge variant="outline" className="text-[9px] py-0 px-1.5 text-violet-600 border-violet-200 dark:text-violet-300">
+                  <Badge variant="outline" className="text-[9px] py-0 px-1.5 text-emerald-700 border-emerald-200 bg-emerald-50">
                     Rule-Based Mock AI
                   </Badge>
                 </h3>
-                <p className="text-[10px] text-stone-400">Natural intent parsing & refinement</p>
+                <p className="text-[10px] text-gray-400">Natural intent parsing & refinement</p>
               </div>
             </div>
 
@@ -374,7 +374,7 @@ export const AIShoppingAssistantChat: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsMinimized((prev) => !prev)}
-                className="p-1.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-lg cursor-pointer"
+                className="p-1.5 text-gray-400 hover:text-gray-700 rounded-lg cursor-pointer"
                 title={isMinimized ? 'Expand' : 'Minimize'}
               >
                 {isMinimized ? <Maximize2 className="h-3.5 w-3.5" /> : <Minimize2 className="h-3.5 w-3.5" />}
@@ -382,7 +382,7 @@ export const AIShoppingAssistantChat: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 rounded-lg cursor-pointer"
+                className="p-1.5 text-gray-400 hover:text-gray-700 rounded-lg cursor-pointer"
                 title="Close chat"
               >
                 <X className="h-4 w-4" />
@@ -393,8 +393,8 @@ export const AIShoppingAssistantChat: React.FC = () => {
           {!isMinimized && (
             <>
               {/* Architecture Scope Notice per Section 7.1 */}
-              <div className="bg-blue-50/70 px-4 py-1.5 border-b border-blue-100 text-[10px] text-blue-900 dark:bg-blue-950/40 dark:border-blue-900/60 dark:text-blue-300 flex items-center gap-1.5 shrink-0">
-                <Info className="h-3 w-3 shrink-0 text-blue-600" />
+              <div className="bg-emerald-50 px-4 py-1.5 border-b border-emerald-100 text-[10px] text-emerald-900 flex items-center gap-1.5 shrink-0">
+                <Info className="h-3 w-3 shrink-0 text-emerald-600" />
                 <span>Zero-Cost Guarantee: Uses local rule-based intent parsing (no paid LLM API).</span>
               </div>
 
@@ -411,29 +411,29 @@ export const AIShoppingAssistantChat: React.FC = () => {
                     <div
                       className={`max-w-[85%] rounded-2xl p-3.5 leading-relaxed ${
                         msg.sender === 'user'
-                          ? 'bg-blue-600 text-white rounded-br-xs shadow-sm font-medium'
+                          ? 'bg-emerald-600 text-white rounded-br-xs shadow-sm font-medium'
                           : msg.isError
-                          ? 'bg-rose-50 border border-rose-200 text-rose-900 dark:bg-rose-950/40 dark:text-rose-200 rounded-bl-xs'
-                          : 'bg-white border border-stone-200/90 text-slate-800 dark:bg-stone-800 dark:border-stone-700 dark:text-stone-100 rounded-bl-xs shadow-xs'
+                          ? 'bg-rose-50 border border-rose-200 text-rose-900 rounded-bl-xs'
+                          : 'bg-white border border-gray-200 text-[#1F2937] rounded-bl-xs shadow-sm'
                       }`}
                     >
                       <p>{msg.text}</p>
 
                       {/* Display Parsed Intent Parameters if Available */}
                       {msg.structuredIntent && Object.keys(msg.structuredIntent).length > 0 && (
-                        <div className="mt-2 pt-2 border-t border-stone-100 dark:border-stone-700/60 flex flex-wrap gap-1 text-[10px] font-mono text-stone-500 dark:text-stone-400">
+                        <div className="mt-2 pt-2 border-t border-gray-100 flex flex-wrap gap-1 text-[10px] font-mono text-gray-500">
                           {msg.structuredIntent.category && (
-                            <span className="rounded bg-stone-100 px-1.5 py-0.5 dark:bg-stone-700">
+                            <span className="rounded bg-gray-100 px-1.5 py-0.5">
                               cat: {msg.structuredIntent.category}
                             </span>
                           )}
                           {msg.structuredIntent.maxPrice && (
-                            <span className="rounded bg-stone-100 px-1.5 py-0.5 dark:bg-stone-700">
+                            <span className="rounded bg-gray-100 px-1.5 py-0.5">
                               max: {formatCurrency(msg.structuredIntent.maxPrice)}
                             </span>
                           )}
                           {msg.structuredIntent.minRating && (
-                            <span className="rounded bg-stone-100 px-1.5 py-0.5 dark:bg-stone-700">
+                            <span className="rounded bg-gray-100 px-1.5 py-0.5">
                               rating: {msg.structuredIntent.minRating}★
                             </span>
                           )}
@@ -450,24 +450,24 @@ export const AIShoppingAssistantChat: React.FC = () => {
                           return (
                             <div
                               key={product.id}
-                              className="flex items-center justify-between gap-3 rounded-2xl border border-stone-200/90 bg-white p-2.5 shadow-xs hover:border-blue-300 dark:border-stone-800 dark:bg-stone-800/80 transition-all"
+                              className="flex items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white p-2.5 shadow-sm hover:border-emerald-300 transition-all"
                             >
                               <div className="flex items-center gap-2.5 min-w-0">
                                 <img
                                   src={product.thumbnail || product.images?.[0] || ''}
                                   alt={product.title}
-                                  className="h-12 w-12 rounded-xl object-cover bg-stone-100 shrink-0"
+                                  className="h-12 w-12 rounded-xl object-cover bg-gray-100 shrink-0"
                                 />
                                 <div className="min-w-0">
                                   <Link
                                     to={`/product/${product.id}`}
                                     onClick={() => setIsOpen(false)}
-                                    className="font-bold text-slate-900 dark:text-white text-xs hover:text-blue-600 truncate block"
+                                    className="font-bold text-[#1F2937] text-xs hover:text-emerald-600 truncate block"
                                   >
                                     {product.title}
                                   </Link>
-                                  <div className="flex items-center gap-2 text-[11px] text-stone-500">
-                                    <span className="font-bold text-blue-600 dark:text-blue-400">
+                                  <div className="flex items-center gap-2 text-[11px] text-gray-500">
+                                    <span className="font-bold text-emerald-600">
                                       {formatCurrency(unitPrice)}
                                     </span>
                                     <span>•</span>
@@ -484,8 +484,8 @@ export const AIShoppingAssistantChat: React.FC = () => {
                                 onClick={() => handleAddToCart(product)}
                                 className={`h-8 px-2.5 text-xs font-bold rounded-lg shrink-0 transition-all cursor-pointer ${
                                   isAdded
-                                    ? 'bg-emerald-600 text-white'
-                                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                    ? 'bg-emerald-700 text-white'
+                                    : 'bg-emerald-600 hover:bg-emerald-700 text-white'
                                 }`}
                               >
                                 {isAdded ? <Check className="h-3.5 w-3.5" /> : <ShoppingBag className="h-3.5 w-3.5" />}
@@ -504,7 +504,7 @@ export const AIShoppingAssistantChat: React.FC = () => {
                             key={prompt}
                             type="button"
                             onClick={() => handleSendMessage(prompt)}
-                            className="rounded-full border border-stone-200 bg-stone-100/80 px-2.5 py-1 text-[11px] font-medium text-stone-600 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600 dark:border-stone-700 dark:bg-stone-800 dark:text-stone-300 transition-colors cursor-pointer text-left"
+                            className="rounded-full border border-gray-200 bg-gray-100/80 px-2.5 py-1 text-[11px] font-medium text-gray-600 hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700 transition-colors cursor-pointer text-left"
                           >
                             {prompt}
                           </button>
@@ -512,16 +512,16 @@ export const AIShoppingAssistantChat: React.FC = () => {
                       </div>
                     )}
 
-                    <span className="text-[10px] text-stone-400 px-1">{msg.timestamp}</span>
+                    <span className="text-[10px] text-gray-400 px-1">{msg.timestamp}</span>
                   </div>
                 ))}
 
                 {/* Loading / Parsing Indicator */}
                 {isThinking && (
-                  <div className="flex items-center gap-2 rounded-2xl bg-white p-3 border border-stone-200/90 text-stone-500 text-xs w-36 shadow-xs dark:bg-stone-800 dark:border-stone-700">
-                    <span className="h-2 w-2 rounded-full bg-blue-600 animate-bounce" />
-                    <span className="h-2 w-2 rounded-full bg-violet-600 animate-bounce [animation-delay:0.2s]" />
-                    <span className="h-2 w-2 rounded-full bg-rose-500 animate-bounce [animation-delay:0.4s]" />
+                  <div className="flex items-center gap-2 rounded-2xl bg-white p-3 border border-gray-200 text-gray-500 text-xs w-36 shadow-sm">
+                    <span className="h-2 w-2 rounded-full bg-emerald-600 animate-bounce" />
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-bounce [animation-delay:0.2s]" />
+                    <span className="h-2 w-2 rounded-full bg-emerald-400 animate-bounce [animation-delay:0.4s]" />
                     <span className="text-[11px] font-medium ml-1">Analyzing...</span>
                   </div>
                 )}
@@ -529,7 +529,7 @@ export const AIShoppingAssistantChat: React.FC = () => {
               </div>
 
               {/* Chat Input Box */}
-              <div className="border-t border-stone-200/90 bg-white p-3 rounded-b-3xl dark:border-stone-800 dark:bg-stone-850 shrink-0">
+              <div className="border-t border-gray-200 bg-white p-3 rounded-b-3xl shrink-0">
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
@@ -542,12 +542,12 @@ export const AIShoppingAssistantChat: React.FC = () => {
                     placeholder="e.g. Show me headphones under $250..."
                     value={inputQuery}
                     onChange={(e) => setInputQuery(e.target.value)}
-                    className="flex-1 h-10 rounded-xl border border-stone-200 bg-stone-50 px-3.5 text-xs text-slate-800 placeholder:text-stone-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-stone-700 dark:bg-stone-800 dark:text-white"
+                    className="flex-1 h-10 rounded-xl border border-gray-200 bg-gray-50 px-3.5 text-xs text-[#1F2937] placeholder:text-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
                   <Button
                     type="submit"
                     disabled={!inputQuery.trim() || isThinking}
-                    className="h-10 w-10 p-0 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shrink-0 cursor-pointer shadow-sm"
+                    className="h-10 w-10 p-0 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white shrink-0 cursor-pointer shadow-sm"
                     aria-label="Send message"
                   >
                     <Send className="h-4 w-4" />

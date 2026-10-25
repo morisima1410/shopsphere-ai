@@ -1,0 +1,6 @@
+{
+  "name": "ShopSphere AI",
+  "description": "ShopSphere AI — Personalized Shopping, Powered by Intelligence. Premium e-commerce experience with Emerald Green, White, and Charcoal theme.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

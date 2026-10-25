@@ -1,6 +1,6 @@
 // ==============================================================================
 // ShopSphere AI — Forgot Password Component (PROJ-SHOP-260918 | Firebase Connected)
-// Theme: Clean Ivory & White, Cobalt Blue, Vibrant Violet, and Subtle Coral
+// Theme: Emerald Green (#059669), White, and Charcoal (#1F2937)
 // ==============================================================================
 
 import React, { useState } from 'react';
@@ -56,14 +56,14 @@ export const ForgotPassword: React.FC = () => {
       <div className="space-y-6">
         {/* Headings */}
         <div className="space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-            <Sparkles className="h-3.5 w-3.5 text-rose-500" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
             <span>Account Recovery</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-[#1F2937] dark:text-white">
             Forgot Your Password?
           </h1>
-          <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-normal">
+          <p className="text-xs sm:text-sm text-[#6B7280] dark:text-gray-400 font-normal">
             Enter your registered email address and we&apos;ll send you instructions to reset your password.
           </p>
         </div>
@@ -81,7 +81,7 @@ export const ForgotPassword: React.FC = () => {
 
         {/* Success Feedback Card */}
         {isSuccess ? (
-          <div className="space-y-4 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 dark:border-emerald-900/60 dark:bg-emerald-950/40">
+          <div className="space-y-4 rounded-2xl border border-emerald-200 bg-emerald-50/90 p-5 dark:border-emerald-900/60 dark:bg-emerald-950/40">
             <div className="flex items-start gap-3">
               <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600 mt-0.5" />
               <div className="space-y-1 text-xs sm:text-sm text-emerald-900 dark:text-emerald-200">
@@ -94,7 +94,7 @@ export const ForgotPassword: React.FC = () => {
 
             <div className="pt-2">
               <Link to="/login" className="w-full">
-                <Button variant="default" className="w-full h-11 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md cursor-pointer">
+                <Button variant="default" className="w-full h-11 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md cursor-pointer">
                   Return to Sign In
                 </Button>
               </Link>
@@ -106,12 +106,12 @@ export const ForgotPassword: React.FC = () => {
             <div className="space-y-1.5">
               <label
                 htmlFor="reset-email"
-                className="block text-xs font-bold text-slate-800 dark:text-slate-200"
+                className="block text-xs font-bold text-[#1F2937] dark:text-gray-200"
               >
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400 pointer-events-none" />
+                <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 <Input
                   id="reset-email"
                   type="email"
@@ -124,8 +124,8 @@ export const ForgotPassword: React.FC = () => {
                   placeholder="name@example.com"
                   aria-invalid={!!fieldError}
                   aria-describedby={fieldError ? 'reset-email-error' : undefined}
-                  className={`pl-10 h-11 text-xs border-stone-200 bg-stone-50/50 hover:bg-white focus:bg-white dark:border-stone-700 dark:bg-stone-800/80 ${
-                    fieldError ? 'border-rose-500 focus-visible:ring-rose-500' : 'focus-visible:ring-blue-600'
+                  className={`pl-10 h-11 text-xs border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white dark:border-gray-700 dark:bg-gray-800/80 ${
+                    fieldError ? 'border-rose-500 focus-visible:ring-rose-500' : 'focus-visible:ring-emerald-500'
                   }`}
                   disabled={isSubmitting}
                 />
@@ -143,7 +143,7 @@ export const ForgotPassword: React.FC = () => {
               type="submit"
               variant="default"
               disabled={isSubmitting}
-              className="w-full h-11 text-sm font-bold tracking-wide gap-2 bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+              className="w-full h-11 text-sm font-bold tracking-wide gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
             >
               {isSubmitting ? (
                 <>
@@ -161,7 +161,7 @@ export const ForgotPassword: React.FC = () => {
         <div className="text-center pt-2">
           <Link
             to="/login"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-600 hover:text-blue-600 dark:text-stone-400 dark:hover:text-blue-400 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#6B7280] hover:text-emerald-600 dark:text-gray-400 dark:hover:text-emerald-400 transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             <span>Back to Login</span>

@@ -2,65 +2,65 @@
 
 @layer base {
   :root {
-    --background: 45 20% 98%; /* Ivory tint #FAF9F5 */
-    --foreground: 224 71% 4%;
+    --background: 210 20% 98%; /* Page Background #F9FAFB */
+    --foreground: 217 33% 17%; /* Charcoal #1F2937 */
 
-    --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card: 0 0% 100%; /* Pure White #FFFFFF */
+    --card-foreground: 217 33% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --popover-foreground: 217 33% 17%;
 
-    --primary: 221 83% 53%; /* Rich Cobalt Blue #2563EB */
-    --primary-foreground: 210 40% 98%;
+    --primary: 160 84% 31%; /* Primary Emerald Green #059669 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 15% 95%; /* Warm Ivory Grey */
-    --secondary-foreground: 224 71% 4%;
+    --secondary: 152 81% 96%; /* Light Emerald Background #ECFDF5 */
+    --secondary-foreground: 161 94% 24%; /* Dark Emerald #047857 */
 
-    --muted: 40 10% 93%;
-    --muted-foreground: 220 10% 46%;
+    --muted: 220 14% 96%; /* #F3F4F6 */
+    --muted-foreground: 220 9% 46%; /* Secondary Text Gray #6B7280 */
 
-    --accent: 262 83% 58%; /* Vibrant Violet #7C3AED */
-    --accent-foreground: 210 40% 98%;
+    --accent: 152 81% 96%; /* Light Emerald #ECFDF5 */
+    --accent-foreground: 161 94% 24%; /* Dark Emerald #047857 */
 
-    --destructive: 347 87% 60%; /* Warm Coral Accent #F43F5E */
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 40 10% 88%;
-    --input: 40 10% 88%;
-    --ring: 221 83% 53%;
+    --border: 220 13% 91%; /* Border Gray #E5E7EB */
+    --input: 220 13% 91%;
+    --ring: 160 84% 31%; /* #059669 */
 
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 224 71% 4%;
+    --background: 217 33% 10%;
     --foreground: 210 40% 98%;
 
-    --card: 222 47% 7%;
+    --card: 217 33% 12%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222 47% 7%;
+    --popover: 217 33% 12%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 160 84% 39%; /* Emerald #10B981 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 14%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 160 30% 18%;
+    --secondary-foreground: 152 81% 96%;
 
-    --muted: 217 33% 14%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 217 33% 16%;
+    --muted-foreground: 220 9% 65%;
 
-    --accent: 262 83% 58%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 160 30% 18%;
+    --accent-foreground: 152 81% 96%;
 
-    --destructive: 347 87% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 221 83% 53%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 160 84% 39%;
   }
 }
 
@@ -72,8 +72,8 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: #FAF9F6;
-  color: #0F172A;
+  background-color: #F9FAFB;
+  color: #1F2937;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -83,25 +83,12 @@ body {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-8px);
-  }
-}
-
-@keyframes float-subtle-reverse {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(8px);
+    transform: translateY(-6px);
   }
 }
 
 .animate-float {
   animation: float-subtle 6s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: float-subtle-reverse 7s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

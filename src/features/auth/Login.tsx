@@ -1,6 +1,6 @@
 // ==============================================================================
 // ShopSphere AI — Login Component (PROJ-SHOP-260918 | Firebase Auth Connected)
-// Theme: Clean Ivory & White, Cobalt Blue, Vibrant Violet, and Subtle Coral
+// Theme: Emerald Green (#059669), White, and Charcoal (#1F2937)
 // ==============================================================================
 
 import React, { useState } from 'react';
@@ -86,7 +86,6 @@ export const Login: React.FC = () => {
   const handleGoogleSignInClick = async () => {
     setAuthError(null);
     setIsGoogleLoading(true);
-
     try {
       const user = await loginWithGoogle();
       setCurrentUser(user);
@@ -105,14 +104,14 @@ export const Login: React.FC = () => {
       <div className="space-y-6">
         {/* Headings */}
         <div className="space-y-1.5">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-            <Sparkles className="h-3.5 w-3.5 text-rose-500" />
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-emerald-700 dark:text-emerald-400">
+            <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
             <span>Welcome Back!</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-[#1F2937] dark:text-white">
             Welcome Back!
           </h1>
-          <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 font-normal">
+          <p className="text-xs sm:text-sm text-[#6B7280] dark:text-gray-400 font-normal">
             Sign in to continue your personalized shopping experience.
           </p>
         </div>
@@ -145,12 +144,12 @@ export const Login: React.FC = () => {
           <div className="space-y-1.5">
             <label
               htmlFor="login-email"
-              className="block text-xs font-bold text-slate-800 dark:text-slate-200"
+              className="block text-xs font-bold text-[#1F2937] dark:text-gray-200"
             >
               Email Address
             </label>
             <div className="relative">
-              <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400 pointer-events-none" />
+              <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
               <Input
                 id="login-email"
                 type="email"
@@ -163,8 +162,8 @@ export const Login: React.FC = () => {
                 placeholder="name@example.com"
                 aria-invalid={!!fieldErrors.email}
                 aria-describedby={fieldErrors.email ? 'login-email-error' : undefined}
-                className={`pl-10 h-11 text-xs border-stone-200 bg-stone-50/50 hover:bg-white focus:bg-white dark:border-stone-700 dark:bg-stone-800/80 ${
-                  fieldErrors.email ? 'border-rose-500 focus-visible:ring-rose-500' : 'focus-visible:ring-blue-600'
+                className={`pl-10 h-11 text-xs border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white dark:border-gray-700 dark:bg-gray-800/80 ${
+                  fieldErrors.email ? 'border-rose-500 focus-visible:ring-rose-500' : 'focus-visible:ring-emerald-500'
                 }`}
                 disabled={isSubmitting || isGoogleLoading}
               />
@@ -182,19 +181,19 @@ export const Login: React.FC = () => {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="login-password"
-                className="block text-xs font-bold text-slate-800 dark:text-slate-200"
+                className="block text-xs font-bold text-[#1F2937] dark:text-gray-200"
               >
                 Password
               </label>
               <Link
                 to="/forgot-password"
-                className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400"
+                className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 hover:underline dark:text-emerald-400"
               >
                 Forgot password?
               </Link>
             </div>
             <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400 pointer-events-none" />
+              <Lock className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
               <Input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
@@ -207,15 +206,15 @@ export const Login: React.FC = () => {
                 placeholder="••••••••"
                 aria-invalid={!!fieldErrors.password}
                 aria-describedby={fieldErrors.password ? 'login-password-error' : undefined}
-                className={`pl-10 pr-10 h-11 text-xs border-stone-200 bg-stone-50/50 hover:bg-white focus:bg-white dark:border-stone-700 dark:bg-stone-800/80 ${
-                  fieldErrors.password ? 'border-rose-500 focus-visible:ring-rose-500' : 'focus-visible:ring-blue-600'
+                className={`pl-10 pr-10 h-11 text-xs border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white dark:border-gray-700 dark:bg-gray-800/80 ${
+                  fieldErrors.password ? 'border-rose-500 focus-visible:ring-rose-500' : 'focus-visible:ring-emerald-500'
                 }`}
                 disabled={isSubmitting || isGoogleLoading}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 cursor-pointer p-1.5 rounded-lg"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 cursor-pointer p-1.5 rounded-lg"
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -236,12 +235,12 @@ export const Login: React.FC = () => {
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="h-4 w-4 rounded border-stone-300 text-blue-600 focus:ring-blue-500 dark:border-stone-700 dark:bg-stone-900 cursor-pointer"
+              className="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 accent-emerald-600 dark:border-gray-700 dark:bg-gray-900 cursor-pointer"
               disabled={isSubmitting || isGoogleLoading}
             />
             <label
               htmlFor="login-remember"
-              className="text-xs font-medium text-stone-600 dark:text-stone-400 select-none cursor-pointer"
+              className="text-xs font-medium text-gray-600 dark:text-gray-400 select-none cursor-pointer"
             >
               Remember me on this device
             </label>
@@ -252,7 +251,7 @@ export const Login: React.FC = () => {
             type="submit"
             variant="default"
             disabled={isSubmitting || isGoogleLoading}
-            className="w-full h-11 text-sm font-bold tracking-wide gap-2 bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-600/25 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
+            className="w-full h-11 text-sm font-bold tracking-wide gap-2 bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.01] active:scale-[0.99] cursor-pointer"
           >
             {isSubmitting ? (
               <>
@@ -268,10 +267,10 @@ export const Login: React.FC = () => {
         {/* Divider */}
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-stone-200 dark:border-stone-800" />
+            <div className="w-full border-t border-gray-200 dark:border-gray-800" />
           </div>
           <div className="relative flex justify-center text-[10px] uppercase tracking-widest font-bold">
-            <span className="bg-white px-3 text-stone-400 dark:bg-stone-900 dark:text-stone-500">
+            <span className="bg-white px-3 text-[#6B7280] dark:bg-gray-900 dark:text-gray-400">
               OR CONTINUE WITH
             </span>
           </div>
@@ -282,10 +281,10 @@ export const Login: React.FC = () => {
           type="button"
           onClick={handleGoogleSignInClick}
           disabled={isSubmitting || isGoogleLoading}
-          className="flex w-full items-center justify-center gap-3 rounded-xl border border-stone-300 bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-slate-800 shadow-sm transition-all hover:bg-stone-50 hover:border-stone-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:border-stone-700 dark:bg-stone-850 dark:text-stone-100 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-xs sm:text-sm font-bold text-[#1F2937] shadow-sm transition-all hover:bg-gray-50 hover:border-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isGoogleLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin text-blue-600" />
+            <Loader2 className="h-4 w-4 animate-spin text-emerald-600" />
           ) : (
             <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
               <path
@@ -310,11 +309,11 @@ export const Login: React.FC = () => {
         </button>
 
         {/* Link to Register */}
-        <div className="text-center text-xs text-stone-500 dark:text-stone-400 pt-1">
+        <div className="text-center text-xs text-[#6B7280] dark:text-gray-400 pt-1">
           Don&apos;t have an account?{' '}
           <Link
             to="/register"
-            className="font-bold text-blue-600 hover:text-blue-700 hover:underline dark:text-blue-400"
+            className="font-bold text-emerald-600 hover:text-emerald-700 hover:underline dark:text-emerald-400"
           >
             Create an account
           </Link>

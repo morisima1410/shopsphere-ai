@@ -1,7 +1,7 @@
 // ==============================================================================
 // ShopSphere AI — Authenticated Dashboard (PROJ-SHOP-260918)
 // Comprehensive: Profile, Addresses, Orders, Reviews, Recently Viewed, Security
-// Theme: Clean Ivory & White, Cobalt Blue, Vibrant Violet, and Subtle Coral Accents
+// Theme: Emerald Green (#059669) + Pure White (#FFFFFF) + Charcoal (#1F2937)
 // ==============================================================================
 
 import React, { useEffect, useState } from 'react';
@@ -139,10 +139,10 @@ export const Dashboard: React.FC = () => {
   const handleRequestPasswordReset = async () => {
     if (!currentUser?.email) return;
     setIsResetting(true);
-    setResetFeedback(null);
     try {
       await resetPassword(currentUser.email);
-      setResetFeedback(`Password reset email sent to ${currentUser.email}. Please check your inbox.`);
+      setResetFeedback(`Password reset instructions have been dispatched to ${currentUser.email}.`);
+      setTimeout(() => setResetFeedback(null), 5000);
     } catch (err) {
       setResetFeedback(getFirebaseErrorMessage(err));
     } finally {
@@ -151,7 +151,9 @@ export const Dashboard: React.FC = () => {
   };
 
   const toggleWishlist = (id: number) => {
-    setWishlistSaved((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]));
+    setWishlistSaved((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
   };
 
   const handleAddAddress = (e: React.FormEvent) => {
@@ -167,7 +169,7 @@ export const Dashboard: React.FC = () => {
         : 'John Doe',
       street: newStreet.trim(),
       city: newCity.trim(),
-      postalCode: newPostal.trim() || '94016',
+      postalCode: newPostal.trim() || '94107',
       country: 'United States',
     };
 
@@ -192,15 +194,15 @@ export const Dashboard: React.FC = () => {
     setAddresses((prev) => prev.filter((a) => a.id !== id));
   };
 
-  // Loading Screen while Firebase evaluates authentication token
+  // Loading state
   if (isAuthLoading) {
     return (
-      <div className="flex min-h-[70vh] flex-col items-center justify-center p-6 text-center bg-[#FAF9F5] dark:bg-[#080B11]">
-        <div className="relative mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-xl shadow-blue-500/25 animate-pulse">
+      <div className="flex min-h-[60vh] flex-col items-center justify-center p-6 text-center">
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 animate-pulse mb-4">
           <ShoppingBag className="h-8 w-8" />
         </div>
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">Verifying Secure Session...</h2>
-        <p className="mt-1 text-sm text-stone-500 dark:text-stone-400">
+        <h2 className="text-xl font-bold text-[#1F2937]">Verifying Secure Session...</h2>
+        <p className="mt-1 text-sm text-gray-500">
           Connecting to Firebase Authentication. Please wait a moment.
         </p>
       </div>
@@ -227,19 +229,18 @@ export const Dashboard: React.FC = () => {
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
-    <div className="min-h-screen bg-[#FAF9F5] text-slate-900 dark:bg-[#080B11] dark:text-slate-50 transition-colors pb-24">
+    <div className="min-h-screen bg-[#F9FAFB] text-[#1F2937] pb-24">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8 animate-in fade-in">
-        {/* Top Welcome Banner: Rich Cobalt & Midnight Obsidian with Violet Glow */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-950 via-blue-950 to-indigo-950 p-6 sm:p-10 text-white shadow-2xl border border-blue-900/40">
+        {/* Top Welcome Banner: Emerald Green + Charcoal Theme */}
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#111827] via-[#1F2937] to-[#064E3B] p-6 sm:p-10 text-white shadow-2xl border border-emerald-900/40">
           {/* Ambient Glows */}
-          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 right-1/4 h-56 w-56 rounded-full bg-rose-500/10 blur-3xl pointer-events-none" />
+          <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-500/20 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-emerald-600/20 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="flex items-center gap-4 sm:gap-6">
               {/* User Avatar */}
-              <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 text-2xl font-black text-white shadow-xl border-2 border-white/20">
+              <div className="relative flex h-16 w-16 sm:h-20 sm:w-20 shrink-0 items-center justify-center rounded-2xl bg-emerald-600 text-2xl font-black text-white shadow-xl border-2 border-white/20">
                 {currentUser.image ? (
                   <img
                     src={currentUser.image}
@@ -250,7 +251,7 @@ export const Dashboard: React.FC = () => {
                   <span>{displayName.charAt(0).toUpperCase()}</span>
                 )}
                 <span
-                  className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-white border-2 border-slate-950 shadow-md"
+                  className="absolute -bottom-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500 text-white border-2 border-[#111827] shadow-md"
                   title="Verified Active"
                 >
                   <CheckCircle2 className="h-3.5 w-3.5" />
@@ -259,18 +260,18 @@ export const Dashboard: React.FC = () => {
 
               <div className="space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2">
-                  <Badge className="bg-blue-600 text-white border-none text-[10px] font-bold tracking-wider uppercase">
+                  <Badge className="bg-emerald-600 text-white border-none text-[10px] font-bold tracking-wider uppercase">
                     VIP Member
                   </Badge>
                   <Badge
                     variant="secondary"
-                    className="bg-white/10 text-cyan-300 text-[11px] gap-1 font-semibold border border-white/15 backdrop-blur-md"
+                    className="bg-white/10 text-emerald-300 text-[11px] gap-1 font-semibold border border-white/15 backdrop-blur-md"
                   >
                     <ShieldCheck className="h-3 w-3 text-emerald-400" /> Firebase Verified
                   </Badge>
                   {currentUser.role === 'admin' && (
                     <Link to="/admin">
-                      <Badge className="bg-violet-600 hover:bg-violet-700 text-white text-[11px] cursor-pointer">
+                      <Badge className="bg-emerald-700 hover:bg-emerald-800 text-white text-[11px] cursor-pointer">
                         Admin Console →
                       </Badge>
                     </Link>
@@ -281,13 +282,13 @@ export const Dashboard: React.FC = () => {
                   Welcome back, {displayName}!
                 </h1>
 
-                <p className="text-xs sm:text-sm text-blue-100/80 flex flex-wrap items-center gap-2">
+                <p className="text-xs sm:text-sm text-gray-200 flex flex-wrap items-center gap-2">
                   <span className="flex items-center gap-1.5">
-                    <Mail className="h-3.5 w-3.5 text-cyan-300" />
+                    <Mail className="h-3.5 w-3.5 text-emerald-300" />
                     <span>{currentUser.email}</span>
                   </span>
                   <span>•</span>
-                  <span className="font-mono text-[11px] text-blue-200/70">
+                  <span className="font-mono text-[11px] text-gray-300">
                     ID: {String(currentUser.id).slice(0, 10)}
                   </span>
                 </p>
@@ -329,7 +330,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* Dashboard Navigation Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-stone-200/80 dark:border-stone-800 scrollbar-none">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-gray-200 scrollbar-none">
           {[
             { id: 'overview', label: 'Overview & Recommendations' },
             { id: 'orders', label: `My Orders (${orders.length})` },
@@ -344,8 +345,8 @@ export const Dashboard: React.FC = () => {
               onClick={() => setActiveTab(tab.id as typeof activeTab)}
               className={`rounded-2xl px-4 py-2 text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-sm'
-                  : 'bg-white text-stone-600 hover:bg-stone-100 hover:text-slate-900 dark:bg-stone-900 dark:text-stone-300 dark:hover:bg-stone-800'
+                  ? 'bg-emerald-600 text-white shadow-sm'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 hover:text-[#1F2937]'
               }`}
             >
               {tab.label}
@@ -355,14 +356,14 @@ export const Dashboard: React.FC = () => {
 
         {/* Reset Feedback Notification */}
         {resetFeedback && (
-          <div className="rounded-2xl border border-blue-200 bg-blue-50/90 p-4 text-xs sm:text-sm text-blue-950 dark:border-blue-900/60 dark:bg-blue-950/40 dark:text-blue-200 flex items-center justify-between gap-3 shadow-xs">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-xs sm:text-sm text-emerald-950 flex items-center justify-between gap-3 shadow-sm">
             <div className="flex items-center gap-2">
-              <Zap className="h-4 w-4 text-blue-600 shrink-0" />
+              <Zap className="h-4 w-4 text-emerald-600 shrink-0" />
               <span>{resetFeedback}</span>
             </div>
             <button
               onClick={() => setResetFeedback(null)}
-              className="text-xs font-bold text-blue-700 hover:text-blue-900 dark:text-blue-300 cursor-pointer"
+              className="text-xs font-bold text-emerald-700 hover:text-emerald-900 cursor-pointer"
             >
               Dismiss
             </button>
@@ -375,73 +376,73 @@ export const Dashboard: React.FC = () => {
             {/* Metric Overview Tiles */}
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {/* Metric 1: Neural Match Score */}
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm hover:border-blue-300 transition-all">
+              <Card className="border-gray-200 bg-white shadow-sm hover:border-emerald-300 transition-all">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Neural Match Score
                   </CardTitle>
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/60 dark:text-blue-400">
-                    <Sparkles className="h-4 w-4 text-rose-500" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                    <Sparkles className="h-4 w-4 text-emerald-600" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-black text-slate-900 dark:text-white">98.4%</div>
-                  <p className="mt-1 text-xs text-blue-600 dark:text-blue-400 font-bold flex items-center gap-1.5">
-                    <span className="h-2 w-2 rounded-full bg-blue-600 animate-ping" />
+                  <div className="text-3xl font-black text-[#1F2937]">98.4%</div>
+                  <p className="mt-1 text-xs text-emerald-600 font-bold flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-600 animate-ping" />
                     <span>High personalization accuracy</span>
                   </p>
                 </CardContent>
               </Card>
 
               {/* Metric 2: Saved Wishlist Items */}
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm hover:border-rose-300 transition-all">
+              <Card className="border-gray-200 bg-white shadow-sm hover:border-rose-300 transition-all">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Saved Wishlist Items
                   </CardTitle>
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-rose-50 text-rose-600">
                     <Heart className="h-4 w-4 fill-rose-500" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-black text-slate-900 dark:text-white">
+                  <div className="text-3xl font-black text-[#1F2937]">
                     {wishlistSaved.length} Items
                   </div>
-                  <p className="mt-1 text-xs text-stone-500">2 on special promotional discount</p>
+                  <p className="mt-1 text-xs text-gray-500">2 on special promotional discount</p>
                 </CardContent>
               </Card>
 
               {/* Metric 3: Active Orders */}
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm hover:border-emerald-300 transition-all">
+              <Card className="border-gray-200 bg-white shadow-sm hover:border-emerald-300 transition-all">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Active Orders
                   </CardTitle>
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                     <Package className="h-4 w-4" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-black text-slate-900 dark:text-white">
+                  <div className="text-3xl font-black text-[#1F2937]">
                     {orders.length} Active
                   </div>
-                  <p className="mt-1 text-xs text-stone-500">Live order engine synced</p>
+                  <p className="mt-1 text-xs text-gray-500">Live order engine synced</p>
                 </CardContent>
               </Card>
 
               {/* Metric 4: Membership Tier */}
-              <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm hover:border-violet-300 transition-all">
+              <Card className="border-gray-200 bg-white shadow-sm hover:border-emerald-300 transition-all">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                  <CardTitle className="text-xs font-bold text-stone-500 uppercase tracking-wider">
+                  <CardTitle className="text-xs font-bold text-gray-500 uppercase tracking-wider">
                     Membership Tier
                   </CardTitle>
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600 dark:bg-violet-950/60 dark:text-violet-400">
-                    <Zap className="h-4 w-4" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                    <Zap className="h-4 w-4 text-emerald-600" />
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-3xl font-black text-slate-900 dark:text-white">Platinum</div>
-                  <p className="mt-1 text-xs text-violet-600 dark:text-violet-400 font-bold">
+                  <div className="text-3xl font-black text-[#1F2937]">Platinum</div>
+                  <p className="mt-1 text-xs text-emerald-600 font-bold">
                     Free express delivery unlocked
                   </p>
                 </CardContent>
@@ -452,21 +453,21 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
               {/* Left Column (8 cols): Personalized Neural Picks */}
               <div className="lg:col-span-8 space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-200/80 pb-4 dark:border-stone-800">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-gray-200 pb-4">
                   <div className="space-y-1">
-                    <h2 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white flex items-center gap-2.5">
+                    <h2 className="text-2xl font-black tracking-tight text-[#1F2937] flex items-center gap-2.5">
                       <span>Personalized Recommendations For You</span>
-                      <span className="rounded-full bg-blue-100 px-2.5 py-0.5 text-[11px] font-bold text-blue-700 dark:bg-blue-950/60 dark:text-blue-300">
+                      <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 text-[11px] font-bold text-emerald-800">
                         AI Tailored
                       </span>
                     </h2>
-                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                    <p className="text-xs text-gray-500">
                       Curated dynamically based on your verified taste profile and search trends.
                     </p>
                   </div>
                   <Link
                     to="/shop"
-                    className="text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 flex items-center gap-1 shrink-0"
+                    className="text-xs font-bold text-emerald-600 hover:text-emerald-700 flex items-center gap-1 shrink-0"
                   >
                     <span>View Full Catalog</span>
                     <ArrowRight className="h-3.5 w-3.5" />
@@ -475,17 +476,17 @@ export const Dashboard: React.FC = () => {
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   {/* Pick 1: Aura Studio ANC (Asserted by test) */}
-                  <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-4 transition-all duration-300 hover:border-blue-400 hover:shadow-xl dark:border-stone-800 dark:bg-stone-900">
+                  <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:border-emerald-400 hover:shadow-xl">
                     <div>
-                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-stone-100 dark:bg-stone-800">
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-100">
                         <img
                           src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
                           alt="Aura Studio Wireless ANC"
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-slate-950/85 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-md">
-                          <Sparkles className="h-3 w-3 text-rose-400" />
+                        <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-[#1F2937]/85 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-md">
+                          <Sparkles className="h-3 w-3 text-emerald-400" />
                           <span>99% Match</span>
                         </div>
 
@@ -495,7 +496,7 @@ export const Dashboard: React.FC = () => {
                           className={`absolute top-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-md transition-all cursor-pointer ${
                             wishlistSaved.includes(1)
                               ? 'bg-rose-500 text-white shadow-md shadow-rose-500/30'
-                              : 'bg-white/80 text-stone-700 hover:text-rose-500'
+                              : 'bg-white/80 text-gray-700 hover:text-rose-500'
                           }`}
                           aria-label="Toggle Wishlist"
                         >
@@ -505,25 +506,25 @@ export const Dashboard: React.FC = () => {
 
                       <div className="mt-3.5 space-y-1">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="font-bold text-blue-600 dark:text-blue-400">Audio & Acoustics</span>
-                          <div className="flex items-center gap-1 font-bold text-stone-700 dark:text-stone-300">
+                          <span className="font-bold text-emerald-600">Audio & Acoustics</span>
+                          <div className="flex items-center gap-1 font-bold text-[#1F2937]">
                             <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
                             <span>4.9</span>
                           </div>
                         </div>
-                        <h3 className="font-bold text-slate-900 dark:text-white text-base">
+                        <h3 className="font-bold text-[#1F2937] text-base">
                           Aura Studio Wireless ANC
                         </h3>
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between">
-                      <span className="text-lg font-black text-slate-900 dark:text-white">$299.00</span>
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <span className="text-lg font-black text-[#1F2937]">$299.00</span>
                       <Link to="/shop">
                         <Button
                           size="sm"
                           variant="outline"
-                          className="h-8 text-xs font-bold rounded-lg border-stone-200 hover:border-blue-400 hover:text-blue-600"
+                          className="h-8 text-xs font-bold rounded-lg border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700"
                         >
                           Explore
                         </Button>
@@ -532,17 +533,17 @@ export const Dashboard: React.FC = () => {
                   </div>
 
                   {/* Pick 2: Chronos Obsidian Timepiece (Asserted by test) */}
-                  <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-4 transition-all duration-300 hover:border-blue-400 hover:shadow-xl dark:border-stone-800 dark:bg-stone-900">
+                  <div className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-gray-200 bg-white p-4 transition-all duration-300 hover:border-emerald-400 hover:shadow-xl">
                     <div>
-                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-stone-100 dark:bg-stone-800">
+                      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-100">
                         <img
                           src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
                           alt="Chronos Obsidian Smart Timepiece"
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                           loading="lazy"
                         />
-                        <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-slate-950/85 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-md">
-                          <Sparkles className="h-3 w-3 text-rose-400" />
+                        <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded-full bg-[#1F2937]/85 px-2.5 py-0.5 text-[10px] font-bold text-white backdrop-blur-md">
+                          <Sparkles className="h-3 w-3 text-emerald-400" />
                           <span>97% Match</span>
                         </div>
 
@@ -552,7 +553,7 @@ export const Dashboard: React.FC = () => {
                           className={`absolute top-2.5 right-2.5 flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-md transition-all cursor-pointer ${
                             wishlistSaved.includes(2)
                               ? 'bg-rose-500 text-white shadow-md shadow-rose-500/30'
-                              : 'bg-white/80 text-stone-700 hover:text-rose-500'
+                              : 'bg-white/80 text-gray-700 hover:text-rose-500'
                           }`}
                           aria-label="Toggle Wishlist"
                         >
@@ -562,25 +563,25 @@ export const Dashboard: React.FC = () => {
 
                       <div className="mt-3.5 space-y-1">
                         <div className="flex items-center justify-between text-xs">
-                          <span className="font-bold text-violet-600 dark:text-violet-400">Modern Horology</span>
-                          <div className="flex items-center gap-1 font-bold text-stone-700 dark:text-stone-300">
+                          <span className="font-bold text-emerald-600">Modern Horology</span>
+                          <div className="flex items-center gap-1 font-bold text-[#1F2937]">
                             <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
                             <span>4.8</span>
                           </div>
                         </div>
-                        <h3 className="font-bold text-slate-900 dark:text-white text-base">
+                        <h3 className="font-bold text-[#1F2937] text-base">
                           Chronos Obsidian Smart Timepiece
                         </h3>
                       </div>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between">
-                      <span className="text-lg font-black text-slate-900 dark:text-white">$349.00</span>
+                    <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                      <span className="text-lg font-black text-[#1F2937]">$349.00</span>
                       <Link to="/shop">
                         <Button
                           size="sm"
                           variant="outline"
-                          className="h-8 text-xs font-bold rounded-lg border-stone-200 hover:border-blue-400 hover:text-blue-600"
+                          className="h-8 text-xs font-bold rounded-lg border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700"
                         >
                           Explore
                         </Button>
@@ -592,10 +593,10 @@ export const Dashboard: React.FC = () => {
 
               {/* Right Column (4 cols): Account Security */}
               <div className="lg:col-span-4 space-y-6">
-                <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm rounded-3xl overflow-hidden">
-                  <CardHeader className="pb-4 border-b border-stone-100 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-850/50">
-                    <CardTitle className="text-sm font-bold flex items-center gap-2 text-slate-900 dark:text-white">
-                      <ShieldCheck className="h-4 w-4 text-blue-600" />
+                <Card className="border-gray-200 bg-white shadow-sm rounded-3xl overflow-hidden">
+                  <CardHeader className="pb-4 border-b border-gray-100 bg-gray-50/50">
+                    <CardTitle className="text-sm font-bold flex items-center gap-2 text-[#1F2937]">
+                      <ShieldCheck className="h-4 w-4 text-emerald-600" />
                       <span>Security & Account Status</span>
                     </CardTitle>
                     <CardDescription className="text-xs">
@@ -606,30 +607,30 @@ export const Dashboard: React.FC = () => {
                   <CardContent className="space-y-4 pt-5 text-xs">
                     {/* Account Identity */}
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
+                      <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                         Signed-In Email
                       </label>
-                      <div className="flex items-center justify-between rounded-xl bg-stone-50 p-3 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700/60">
-                        <span className="font-mono text-slate-800 dark:text-slate-200 truncate">
+                      <div className="flex items-center justify-between rounded-xl bg-gray-50 p-3 border border-gray-200">
+                        <span className="font-mono text-[#1F2937] truncate">
                           {currentUser.email}
                         </span>
-                        <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 ml-2" />
+                        <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0 ml-2" />
                       </div>
                     </div>
 
                     {/* Provider Info */}
                     <div className="space-y-1.5">
-                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
+                      <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                         Authentication Method
                       </label>
-                      <div className="rounded-xl bg-stone-50 p-3 dark:bg-stone-800/60 border border-stone-200/80 dark:border-stone-700/60 text-slate-700 dark:text-slate-300 font-medium">
+                      <div className="rounded-xl bg-gray-50 p-3 border border-gray-200 text-gray-700 font-medium">
                         Firebase Identity Protocol (Encrypted)
                       </div>
                     </div>
 
                     {/* Password Management */}
-                    <div className="space-y-2 pt-2 border-t border-stone-100 dark:border-stone-800">
-                      <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
+                    <div className="space-y-2 pt-2 border-t border-gray-100">
+                      <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                         Credential Management
                       </label>
                       <Button
@@ -637,7 +638,7 @@ export const Dashboard: React.FC = () => {
                         size="sm"
                         onClick={handleRequestPasswordReset}
                         disabled={isResetting}
-                        className="w-full text-xs font-bold gap-2 justify-center h-10 rounded-xl border-stone-300 hover:border-blue-400 hover:text-blue-600 cursor-pointer"
+                        className="w-full text-xs font-bold gap-2 justify-center h-10 rounded-xl border-gray-200 text-gray-700 hover:border-emerald-500 hover:bg-emerald-50 hover:text-emerald-700 cursor-pointer"
                       >
                         {isResetting ? (
                           <>
@@ -646,16 +647,16 @@ export const Dashboard: React.FC = () => {
                           </>
                         ) : (
                           <>
-                            <KeyRound className="h-3.5 w-3.5 text-blue-600" />
+                            <KeyRound className="h-3.5 w-3.5 text-emerald-600" />
                             <span>Send Password Reset Email</span>
                           </>
                         )}
                       </Button>
                     </div>
 
-                    <div className="pt-2 border-t border-stone-100 dark:border-stone-800">
+                    <div className="pt-2 border-t border-gray-100">
                       <Link to="/orders">
-                        <Button className="w-full text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl h-10">
+                        <Button className="w-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-10 cursor-pointer">
                           View Orders & Fulfillment Tracker →
                         </Button>
                       </Link>
@@ -672,11 +673,11 @@ export const Dashboard: React.FC = () => {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white">Order History & Tracking</h2>
-                <p className="text-xs text-stone-500">Track current shipments and view previous receipts.</p>
+                <h2 className="text-xl font-black text-[#1F2937]">Order History & Tracking</h2>
+                <p className="text-xs text-gray-500">Track current shipments and view previous receipts.</p>
               </div>
               <Link to="/orders">
-                <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl border-stone-300">
+                <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl border-gray-200 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200">
                   Full Tracking Hub →
                 </Button>
               </Link>
@@ -686,23 +687,23 @@ export const Dashboard: React.FC = () => {
               {orders.map((order) => (
                 <div
                   key={order.id}
-                  className="rounded-3xl border border-stone-200/90 bg-white p-6 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-4"
+                  className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm space-y-4"
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-100 dark:border-stone-800 pb-3">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-3">
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-sm text-slate-900 dark:text-white">{order.id}</span>
+                      <span className="font-mono font-bold text-sm text-[#1F2937]">{order.id}</span>
                       <span
                         className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase ${
                           order.status === 'delivered'
-                            ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
-                            : 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300'
+                            ? 'bg-emerald-100 text-emerald-800'
+                            : 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                         }`}
                       >
                         {order.status.replace('_', ' ')}
                       </span>
                     </div>
 
-                    <span className="text-sm font-black text-slate-900 dark:text-white">
+                    <span className="text-sm font-black text-[#1F2937]">
                       {formatCurrency(order.total)}
                     </span>
                   </div>
@@ -714,11 +715,11 @@ export const Dashboard: React.FC = () => {
                           <img
                             src={item.thumbnail}
                             alt={item.title}
-                            className="h-9 w-9 rounded-lg object-cover bg-stone-100"
+                            className="h-9 w-9 rounded-lg object-cover bg-gray-100 border border-gray-200"
                           />
                           <div>
-                            <p className="font-bold text-slate-800 dark:text-slate-200">{item.title}</p>
-                            <p className="text-[10px] text-stone-400">Qty: {item.quantity}</p>
+                            <p className="font-bold text-[#1F2937]">{item.title}</p>
+                            <p className="text-[10px] text-gray-400">Qty: {item.quantity}</p>
                           </div>
                         </div>
                         <span className="font-bold">{formatCurrency(item.price * item.quantity)}</span>
@@ -726,12 +727,12 @@ export const Dashboard: React.FC = () => {
                     ))}
                   </div>
 
-                  <div className="pt-2 border-t border-stone-100 dark:border-stone-800 flex justify-between items-center text-xs">
-                    <span className="text-stone-400">
+                  <div className="pt-2 border-t border-gray-100 flex justify-between items-center text-xs">
+                    <span className="text-gray-500">
                       Destination: {order.shippingAddress?.city}, {order.shippingAddress?.country}
                     </span>
                     <Link to="/orders">
-                      <Button size="sm" variant="ghost" className="h-8 text-xs font-bold text-blue-600">
+                      <Button size="sm" variant="ghost" className="h-8 text-xs font-bold text-emerald-600 hover:bg-emerald-50 hover:text-emerald-700">
                         Track Shipment →
                       </Button>
                     </Link>
@@ -747,13 +748,13 @@ export const Dashboard: React.FC = () => {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white">Saved Delivery Addresses</h2>
-                <p className="text-xs text-stone-500">Manage shipping addresses for faster 1-click checkout.</p>
+                <h2 className="text-xl font-black text-[#1F2937]">Saved Delivery Addresses</h2>
+                <p className="text-xs text-gray-500">Manage shipping addresses for faster 1-click checkout.</p>
               </div>
 
               <Button
                 onClick={() => setShowAddressForm((prev) => !prev)}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs gap-1.5 cursor-pointer"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs gap-1.5 cursor-pointer"
               >
                 <Plus className="h-4 w-4" />
                 <span>Add Address</span>
@@ -764,50 +765,50 @@ export const Dashboard: React.FC = () => {
             {showAddressForm && (
               <form
                 onSubmit={handleAddAddress}
-                className="rounded-3xl border border-blue-200 bg-white p-6 shadow-md dark:border-blue-900 dark:bg-stone-900 space-y-4 text-xs"
+                className="rounded-3xl border border-emerald-200 bg-white p-6 shadow-md space-y-4 text-xs"
               >
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white">New Shipping Address</h3>
+                <h3 className="text-sm font-bold text-[#1F2937]">New Shipping Address</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">Address Label</label>
+                    <label className="font-bold text-gray-700">Address Label</label>
                     <Input
                       type="text"
                       placeholder="e.g. Vacation Home, Work"
                       value={newLabel}
                       onChange={(e) => setNewLabel(e.target.value)}
-                      className="h-10 text-xs rounded-xl"
+                      className="h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">Street Address</label>
+                    <label className="font-bold text-gray-700">Street Address</label>
                     <Input
                       type="text"
                       placeholder="123 Ocean Blvd"
                       value={newStreet}
                       onChange={(e) => setNewStreet(e.target.value)}
-                      className="h-10 text-xs rounded-xl"
+                      className="h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                       required
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">City</label>
+                    <label className="font-bold text-gray-700">City</label>
                     <Input
                       type="text"
                       placeholder="Seattle"
                       value={newCity}
                       onChange={(e) => setNewCity(e.target.value)}
-                      className="h-10 text-xs rounded-xl"
+                      className="h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                       required
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="font-bold text-stone-700 dark:text-stone-300">Postal Code</label>
+                    <label className="font-bold text-gray-700">Postal Code</label>
                     <Input
                       type="text"
                       placeholder="98101"
                       value={newPostal}
                       onChange={(e) => setNewPostal(e.target.value)}
-                      className="h-10 text-xs rounded-xl"
+                      className="h-10 text-xs rounded-xl border-gray-200 focus-visible:ring-emerald-500"
                     />
                   </div>
                 </div>
@@ -821,7 +822,7 @@ export const Dashboard: React.FC = () => {
                   >
                     Cancel
                   </Button>
-                  <Button type="submit" className="text-xs font-bold bg-blue-600 text-white rounded-xl">
+                  <Button type="submit" className="text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl">
                     Save Address
                   </Button>
                 </div>
@@ -833,37 +834,37 @@ export const Dashboard: React.FC = () => {
               {addresses.map((addr) => (
                 <div
                   key={addr.id}
-                  className={`rounded-3xl border p-6 bg-white dark:bg-stone-900 transition-all shadow-xs space-y-4 ${
+                  className={`rounded-3xl border p-6 bg-white transition-all shadow-sm space-y-4 ${
                     addr.isDefault
-                      ? 'border-blue-500 ring-2 ring-blue-500/20'
-                      : 'border-stone-200/90 dark:border-stone-800'
+                      ? 'border-emerald-500 ring-2 ring-emerald-500/20'
+                      : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-bold text-xs uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                    <span className="font-bold text-xs uppercase tracking-wider text-emerald-600">
                       {addr.label}
                     </span>
                     {addr.isDefault && (
-                      <span className="rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-bold text-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                      <span className="rounded-full bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
                         Default
                       </span>
                     )}
                   </div>
 
                   <div className="space-y-1 text-xs">
-                    <p className="font-black text-slate-900 dark:text-white text-sm">{addr.fullName}</p>
-                    <p className="text-stone-600 dark:text-stone-300">{addr.street}</p>
-                    <p className="text-stone-500 text-[11px]">
+                    <p className="font-black text-[#1F2937] text-sm">{addr.fullName}</p>
+                    <p className="text-gray-600">{addr.street}</p>
+                    <p className="text-gray-500 text-[11px]">
                       {addr.city}, {addr.postalCode} • {addr.country}
                     </p>
                   </div>
 
-                  <div className="pt-3 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between text-xs">
+                  <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
                     {!addr.isDefault ? (
                       <button
                         type="button"
                         onClick={() => handleSetDefaultAddress(addr.id)}
-                        className="font-bold text-blue-600 hover:text-blue-700 cursor-pointer"
+                        className="font-bold text-emerald-600 hover:text-emerald-700 cursor-pointer"
                       >
                         Set as Default
                       </button>
@@ -878,7 +879,7 @@ export const Dashboard: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleDeleteAddress(addr.id)}
-                        className="text-stone-400 hover:text-rose-600 transition-colors cursor-pointer"
+                        className="text-gray-400 hover:text-rose-600 transition-colors cursor-pointer"
                         title="Delete Address"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -896,25 +897,25 @@ export const Dashboard: React.FC = () => {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white">My Community Reviews</h2>
-                <p className="text-xs text-stone-500">Your verified ratings and impressions on purchased items.</p>
+                <h2 className="text-xl font-black text-[#1F2937]">My Community Reviews</h2>
+                <p className="text-xs text-gray-500">Your verified ratings and impressions on purchased items.</p>
               </div>
               <Link to="/reviews">
-                <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl border-stone-300">
+                <Button variant="outline" size="sm" className="text-xs font-bold rounded-xl border-gray-200 text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200">
                   Community Reviews Hub →
                 </Button>
               </Link>
             </div>
 
             {userReviews.length === 0 ? (
-              <div className="rounded-3xl border border-dashed border-stone-300 bg-white p-10 text-center dark:border-stone-800 dark:bg-stone-900 space-y-3">
-                <MessageSquare className="h-10 w-10 mx-auto text-stone-400" />
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">No Reviews Posted Yet</h3>
-                <p className="text-xs text-stone-500 max-w-sm mx-auto">
-                  Share your impressions on the products you've experienced to help fellow shoppers.
+              <div className="rounded-3xl border border-dashed border-gray-300 bg-white p-10 text-center space-y-3">
+                <MessageSquare className="h-10 w-10 mx-auto text-gray-400" />
+                <h3 className="text-base font-bold text-[#1F2937]">No Reviews Posted Yet</h3>
+                <p className="text-xs text-gray-500 max-w-sm mx-auto">
+                  Share your impressions on the products you&apos;ve experienced to help fellow shoppers.
                 </p>
                 <Link to="/reviews">
-                  <Button className="bg-blue-600 text-white text-xs font-bold rounded-xl">
+                  <Button className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl">
                     Write a Review
                   </Button>
                 </Link>
@@ -924,7 +925,7 @@ export const Dashboard: React.FC = () => {
                 {userReviews.map((r, i) => (
                   <div
                     key={r.id || i}
-                    className="rounded-3xl border border-stone-200/90 bg-white p-6 shadow-xs dark:border-stone-800 dark:bg-stone-900 space-y-3"
+                    className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm space-y-3"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1">
@@ -932,17 +933,17 @@ export const Dashboard: React.FC = () => {
                           <Star
                             key={star}
                             className={`h-4 w-4 ${
-                              star <= r.rating ? 'fill-amber-400 text-amber-400' : 'text-stone-300'
+                              star <= r.rating ? 'fill-amber-400 text-amber-400' : 'text-gray-200'
                             }`}
                           />
                         ))}
                       </div>
-                      <span className="text-[11px] text-stone-400">
+                      <span className="text-[11px] text-gray-400">
                         {new Date(r.date).toLocaleDateString()}
                       </span>
                     </div>
-                    <p className="text-xs text-stone-700 dark:text-stone-300 font-normal">
-                      "{r.comment}"
+                    <p className="text-xs text-gray-700 font-normal">
+                      &quot;{r.comment}&quot;
                     </p>
                   </div>
                 ))}
@@ -956,14 +957,14 @@ export const Dashboard: React.FC = () => {
           <div className="space-y-6 animate-in fade-in">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-black text-slate-900 dark:text-white">Recently Viewed Products</h2>
-                <p className="text-xs text-stone-500">Pick up right where you left off in your shopping session.</p>
+                <h2 className="text-xl font-black text-[#1F2937]">Recently Viewed Products</h2>
+                <p className="text-xs text-gray-500">Pick up right where you left off in your shopping session.</p>
               </div>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => useRecentlyViewedStore.getState().clearHistory()}
-                className="text-xs font-bold rounded-xl border-stone-300 text-stone-500"
+                className="text-xs font-bold rounded-xl border-gray-200 text-gray-700 hover:bg-gray-100"
               >
                 Clear History
               </Button>
@@ -980,17 +981,17 @@ export const Dashboard: React.FC = () => {
         {/* Tab: Recommendation Preferences & Signal Transparency (PRD Section 5.7) */}
         {activeTab === 'preferences' && (
           <div className="space-y-6 animate-in fade-in">
-            <div className="rounded-3xl border border-blue-200/90 bg-white p-6 sm:p-8 shadow-sm dark:border-blue-900/60 dark:bg-stone-900 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-100 dark:border-stone-800 pb-5">
+            <div className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-5">
                 <div>
-                  <div className="inline-flex items-center gap-1.5 rounded-full bg-violet-100 px-3 py-1 text-xs font-bold text-violet-800 dark:bg-violet-950 dark:text-violet-300 mb-2">
-                    <Sparkles className="h-3.5 w-3.5 text-rose-500" />
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-800 mb-2">
+                    <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
                     <span>Explainable Personalization Layer</span>
                   </div>
-                  <h2 className="text-xl font-black text-slate-900 dark:text-white">
+                  <h2 className="text-xl font-black text-[#1F2937]">
                     Recommendation Signals & Preference Transparency
                   </h2>
-                  <p className="text-xs text-stone-500 mt-1 max-w-xl">
+                  <p className="text-xs text-gray-500 mt-1 max-w-xl">
                     ShopSphere AI uses explicit, privacy-conscious signals rather than an opaque black box. Here is exactly what the engine is using to calibrate your product rails:
                   </p>
                 </div>
@@ -1003,7 +1004,7 @@ export const Dashboard: React.FC = () => {
                     setResetFeedback('Recommendation signals successfully reset to default neutral state.');
                     setTimeout(() => setResetFeedback(null), 4000);
                   }}
-                  className="text-xs font-bold border-stone-300 text-stone-600 hover:text-rose-600 hover:border-rose-300 rounded-xl cursor-pointer shrink-0"
+                  className="text-xs font-bold border-gray-200 text-gray-700 hover:text-rose-600 hover:border-rose-300 rounded-xl cursor-pointer shrink-0"
                 >
                   <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
                   <span>Reset All Signals</span>
@@ -1013,51 +1014,51 @@ export const Dashboard: React.FC = () => {
               {/* Active Signal Breakdown Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
                 {/* Signal 1: Browsing History Signal */}
-                <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-800/60 space-y-2">
-                  <span className="font-bold text-[11px] uppercase tracking-wider text-blue-600 dark:text-blue-400 block">
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4 space-y-2">
+                  <span className="font-bold text-[11px] uppercase tracking-wider text-emerald-600 block">
                     Browsing Signals
                   </span>
-                  <p className="font-bold text-slate-900 dark:text-white">Recently Viewed Products:</p>
-                  <p className="text-stone-600 dark:text-stone-300 text-[11px] leading-relaxed">
+                  <p className="font-bold text-[#1F2937]">Recently Viewed Products:</p>
+                  <p className="text-gray-600 text-[11px] leading-relaxed">
                     {recentlyViewedProducts.length > 0
                       ? recentlyViewedProducts.map((p) => p.title).slice(0, 3).join(', ')
                       : 'Aura Studio Wireless ANC, Chronos Obsidian Smart Timepiece'}
                   </p>
-                  <p className="text-[10px] text-stone-400">Weight: 20% in composite ranking</p>
+                  <p className="text-[10px] text-gray-400">Weight: 20% in composite ranking</p>
                 </div>
 
                 {/* Signal 2: Derived Price Band */}
-                <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-800/60 space-y-2">
-                  <span className="font-bold text-[11px] uppercase tracking-wider text-violet-600 dark:text-violet-400 block">
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4 space-y-2">
+                  <span className="font-bold text-[11px] uppercase tracking-wider text-emerald-600 block">
                     Price Affinity
                   </span>
-                  <p className="font-bold text-slate-900 dark:text-white">Your Typical Price Range:</p>
-                  <p className="text-stone-600 dark:text-stone-300 text-[11px] font-mono font-bold">
+                  <p className="font-bold text-[#1F2937]">Your Typical Price Range:</p>
+                  <p className="text-gray-700 text-[11px] font-mono font-bold">
                     $150 – $350 (Balanced to Premium Tier)
                   </p>
-                  <p className="text-[10px] text-stone-400">Weighted to minimize budget-mismatch friction</p>
+                  <p className="text-[10px] text-gray-400">Weighted to minimize budget-mismatch friction</p>
                 </div>
 
                 {/* Signal 3: Aesthetic Persona & Categories */}
-                <div className="rounded-2xl border border-stone-100 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-800/60 space-y-2">
-                  <span className="font-bold text-[11px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 block">
+                <div className="rounded-2xl border border-gray-100 bg-gray-50 p-4 space-y-2">
+                  <span className="font-bold text-[11px] uppercase tracking-wider text-emerald-600 block">
                     Style Affinity
                   </span>
-                  <p className="font-bold text-slate-900 dark:text-white">Dominant Interest Categories:</p>
-                  <p className="text-stone-600 dark:text-stone-300 text-[11px]">
+                  <p className="font-bold text-[#1F2937]">Dominant Interest Categories:</p>
+                  <p className="text-gray-600 text-[11px]">
                     Audio & Acoustics, Modern Horology, Everyday Carry
                   </p>
-                  <p className="text-[10px] text-stone-400">Calculated from interaction velocity & cart additions</p>
+                  <p className="text-[10px] text-gray-400">Calculated from interaction velocity & cart additions</p>
                 </div>
               </div>
 
               {/* Formula Documentation Callout */}
-              <div className="rounded-2xl border border-stone-200/80 bg-stone-100/70 p-4 dark:border-stone-700 dark:bg-stone-800/40 text-xs text-stone-600 dark:text-stone-300 space-y-1.5">
-                <span className="font-bold text-slate-900 dark:text-white">PRD Section 6.2 Scoring Formula:</span>
-                <p className="font-mono text-[11px] text-blue-700 dark:text-blue-300">
+              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4 text-xs text-gray-600 space-y-1.5">
+                <span className="font-bold text-[#1F2937]">PRD Section 6.2 Scoring Formula:</span>
+                <p className="font-mono text-[11px] text-emerald-700 font-semibold">
                   score(product) = w1*categoryMatch + w2*priceSimilarity + w3*tagOverlap + w4*rating + w5*recentViews + w6*wishlist + w7*cart
                 </p>
-                <p className="text-[11px] text-stone-500">
+                <p className="text-[11px] text-gray-500">
                   Signals are normalized (0–1) before weighting so no single signal dominates unintentionally.
                 </p>
               </div>
@@ -1068,10 +1069,10 @@ export const Dashboard: React.FC = () => {
         {/* Tab 6: Account & Security */}
         {activeTab === 'security' && (
           <div className="max-w-2xl space-y-6 animate-in fade-in">
-            <Card className="border-stone-200/90 bg-white dark:border-stone-800 dark:bg-stone-900 shadow-sm rounded-3xl overflow-hidden">
-              <CardHeader className="pb-4 border-b border-stone-100 dark:border-stone-800 bg-stone-50/50">
-                <CardTitle className="text-sm font-bold flex items-center gap-2 text-slate-900 dark:text-white">
-                  <ShieldCheck className="h-4 w-4 text-blue-600" />
+            <Card className="border-gray-200 bg-white shadow-sm rounded-3xl overflow-hidden">
+              <CardHeader className="pb-4 border-b border-gray-100 bg-gray-50/50">
+                <CardTitle className="text-sm font-bold flex items-center gap-2 text-[#1F2937]">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600" />
                   <span>Account & Authentication Security</span>
                 </CardTitle>
                 <CardDescription className="text-xs">
@@ -1081,28 +1082,28 @@ export const Dashboard: React.FC = () => {
 
               <CardContent className="space-y-5 pt-6 text-xs">
                 <div className="space-y-1">
-                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Email</label>
-                  <Input value={currentUser.email} disabled className="h-10 text-xs bg-stone-50 rounded-xl" />
+                  <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Email</label>
+                  <Input value={currentUser.email} disabled className="h-10 text-xs bg-gray-50 rounded-xl" />
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">Account Role</label>
-                  <div className="flex items-center justify-between p-3 rounded-xl bg-stone-50 dark:bg-stone-800/60 border border-stone-200/80">
-                    <span className="font-bold capitalize text-slate-800 dark:text-slate-200">
+                  <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">Account Role</label>
+                  <div className="flex items-center justify-between p-3 rounded-xl bg-gray-50 border border-gray-200">
+                    <span className="font-bold capitalize text-[#1F2937]">
                       {currentUser.role || 'Customer'}
                     </span>
                     <Badge className="bg-emerald-600 text-white">Active</Badge>
                   </div>
                 </div>
 
-                <div className="space-y-2 pt-2 border-t border-stone-100 dark:border-stone-800">
-                  <label className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
+                <div className="space-y-2 pt-2 border-t border-gray-100">
+                  <label className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
                     Password & Security Reset
                   </label>
                   <Button
                     onClick={handleRequestPasswordReset}
                     disabled={isResetting}
-                    className="w-full text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl h-10 cursor-pointer"
+                    className="w-full text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl h-10 cursor-pointer"
                   >
                     {isResetting ? 'Sending Reset Instructions...' : 'Send Password Reset Email'}
                   </Button>

@@ -1,5 +1,5 @@
 // ==============================================================================
-// ShopSphere AI — Editorial Luxury Navbar with Cart, Wishlist & Search
+// ShopSphere AI — Navbar (Emerald Green + Pure White + Charcoal)
 // ==============================================================================
 
 import React, { useState } from 'react';
@@ -74,20 +74,20 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-stone-200/80 bg-[#FAF9F6]/95 backdrop-blur-md dark:border-stone-800/80 dark:bg-[#0B0F19]/95 transition-all">
+      <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md transition-all">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Left: Brand Identity with Cobalt & Violet Badge */}
+          {/* Left: Brand Identity with Emerald Accent Badge */}
           <Link to="/" className="flex items-center gap-2.5 group shrink-0">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-violet-600 text-white shadow-md shadow-blue-600/20 group-hover:scale-105 transition-transform">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-600/20 group-hover:bg-emerald-700 transition-colors">
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white dark:ring-slate-900" />
+              <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-emerald-400 ring-2 ring-white" />
             </div>
             <div className="flex flex-col">
-              <span className="flex items-center gap-1.5 text-lg font-black tracking-tight text-slate-900 dark:text-white">
+              <span className="flex items-center gap-1.5 text-lg font-black tracking-tight text-gray-900">
                 {APP_CONFIG.name}
-                <Sparkles className="h-4 w-4 text-rose-500 animate-pulse" />
+                <Sparkles className="h-4 w-4 text-emerald-600" />
               </span>
-              <span className="hidden sm:inline-block text-[9px] font-bold tracking-widest uppercase text-blue-600 dark:text-blue-400">
+              <span className="hidden sm:inline-block text-[9px] font-bold tracking-widest uppercase text-emerald-700">
                 Personalized Shopping AI
               </span>
             </div>
@@ -103,8 +103,8 @@ export const Navbar: React.FC = () => {
                   to={link.href}
                   className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors ${
                     isActive
-                      ? 'bg-stone-200/70 text-blue-700 font-bold dark:bg-stone-800 dark:text-blue-400'
-                      : 'text-stone-600 hover:text-blue-600 hover:bg-stone-200/40 dark:text-stone-300 dark:hover:text-blue-400'
+                      ? 'bg-emerald-50 text-emerald-700 font-bold border border-emerald-100'
+                      : 'text-gray-700 hover:text-emerald-700 hover:bg-emerald-50/50'
                   }`}
                 >
                   {link.label}
@@ -116,9 +116,9 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setCalibratorOpen(true)}
-              className="rounded-full px-3 py-1 text-xs font-bold text-violet-700 bg-violet-50 hover:bg-violet-100 dark:bg-violet-950/50 dark:text-violet-300 flex items-center gap-1.5 transition-all border border-violet-200 dark:border-violet-800 cursor-pointer"
+              className="rounded-full px-3 py-1 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 flex items-center gap-1.5 transition-all border border-emerald-200 cursor-pointer"
             >
-              <Sparkles className="h-3.5 w-3.5 text-rose-500" />
+              <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
               <span>AI Advisor</span>
             </button>
 
@@ -127,8 +127,8 @@ export const Navbar: React.FC = () => {
                 to="/dashboard"
                 className={`rounded-full px-3.5 py-1.5 text-xs font-semibold flex items-center gap-1.5 transition-colors ${
                   currentPath === '/dashboard'
-                    ? 'bg-blue-50 text-blue-700 font-bold dark:bg-blue-950/60 dark:text-blue-300'
-                    : 'text-stone-600 hover:text-blue-600 hover:bg-stone-200/40 dark:text-stone-300'
+                    ? 'bg-emerald-50 text-emerald-700 font-bold border border-emerald-100'
+                    : 'text-gray-700 hover:text-emerald-700 hover:bg-emerald-50/50'
                 }`}
               >
                 <LayoutDashboard className="h-3.5 w-3.5" />
@@ -140,11 +140,11 @@ export const Navbar: React.FC = () => {
           {/* Right: Actions, Badges, Search, Wishlist & Cart */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Required metadata badges for testing */}
-            <Badge variant="outline" className="hidden 2xl:inline-flex font-mono text-[11px] border-stone-300 text-stone-600 dark:border-stone-800 dark:text-stone-400">
+            <Badge variant="outline" className="hidden 2xl:inline-flex font-mono text-[11px] border-gray-200 text-gray-600">
               {APP_CONFIG.projectId}
             </Badge>
 
-            <Badge variant="secondary" className="hidden xl:inline-flex text-[11px] bg-blue-50 text-blue-700 border border-blue-200/60 dark:bg-blue-950/60 dark:text-blue-300 dark:border-blue-900/60">
+            <Badge variant="secondary" className="hidden xl:inline-flex text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200">
               Step 2 Auth
             </Badge>
 
@@ -152,7 +152,7 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setSearchOpen((prev) => !prev)}
-              className="p-2 rounded-xl text-stone-600 hover:bg-stone-100 hover:text-blue-600 dark:text-stone-300 dark:hover:bg-stone-900 cursor-pointer"
+              className="p-2 rounded-xl text-gray-600 hover:bg-gray-100 hover:text-emerald-700 cursor-pointer transition-colors"
               aria-label="Search Catalog"
               title="Search Catalog"
             >
@@ -162,13 +162,13 @@ export const Navbar: React.FC = () => {
             {/* Compare Matrix Icon with Live Counter */}
             <Link
               to="/compare"
-              className="relative p-2 rounded-xl text-stone-600 hover:bg-stone-100 hover:text-blue-600 dark:text-stone-300 dark:hover:bg-stone-900 transition-colors"
+              className="relative p-2 rounded-xl text-gray-600 hover:bg-gray-100 hover:text-emerald-700 transition-colors"
               aria-label="Compare Products Matrix"
               title="Compare Products"
             >
               <Sliders className="h-4 w-4" />
               {compareCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[9px] font-black text-white shadow-xs">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-600 text-[9px] font-black text-white shadow-xs">
                   {compareCount}
                 </span>
               )}
@@ -177,13 +177,13 @@ export const Navbar: React.FC = () => {
             {/* Wishlist Icon with Live Counter */}
             <Link
               to="/wishlist"
-              className="relative p-2 rounded-xl text-stone-600 hover:bg-stone-100 hover:text-rose-600 dark:text-stone-300 dark:hover:bg-stone-900 transition-colors"
+              className="relative p-2 rounded-xl text-gray-600 hover:bg-gray-100 hover:text-emerald-700 transition-colors"
               aria-label="View Wishlist"
               title="Saved Wishlist"
             >
               <Heart className="h-4 w-4" />
               {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[9px] font-black text-white shadow-xs">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-600 text-[9px] font-black text-white shadow-xs">
                   {wishlistCount}
                 </span>
               )}
@@ -192,13 +192,13 @@ export const Navbar: React.FC = () => {
             {/* Cart Icon with Live Counter */}
             <Link
               to="/cart"
-              className="relative p-2 rounded-xl text-stone-600 hover:bg-stone-100 hover:text-blue-600 dark:text-stone-300 dark:hover:bg-stone-900 transition-colors"
+              className="relative p-2 rounded-xl text-gray-600 hover:bg-gray-100 hover:text-emerald-700 transition-colors"
               aria-label="View Cart"
               title="Shopping Cart"
             >
               <ShoppingBag className="h-4 w-4" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[9px] font-black text-white shadow-xs">
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-emerald-600 text-[9px] font-black text-white shadow-xs">
                   {cartCount}
                 </span>
               )}
@@ -209,9 +209,9 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center gap-2">
                 <Link
                   to="/dashboard"
-                  className="flex items-center gap-2 rounded-full border border-stone-200 bg-white py-1 pl-1 pr-3 text-xs font-bold text-slate-800 hover:border-blue-300 transition-all dark:border-stone-800 dark:bg-stone-900 dark:text-stone-200"
+                  className="flex items-center gap-2 rounded-full border border-gray-200 bg-white py-1 pl-1 pr-3 text-xs font-bold text-gray-800 hover:border-emerald-300 transition-all"
                 >
-                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-tr from-blue-600 to-violet-600 text-[11px] font-bold text-white shadow-xs">
+                  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-600 text-[11px] font-bold text-white shadow-xs">
                     {currentUser.firstName ? currentUser.firstName.charAt(0).toUpperCase() : 'U'}
                   </div>
                   <span className="hidden sm:inline max-w-[100px] truncate">{currentUser.firstName || 'Account'}</span>
@@ -221,7 +221,7 @@ export const Navbar: React.FC = () => {
                   variant="ghost"
                   size="sm"
                   onClick={handleLogout}
-                  className="h-8 px-2 text-xs text-stone-500 hover:text-rose-600 dark:text-stone-400 gap-1.5 cursor-pointer"
+                  className="h-8 px-2 text-xs text-gray-500 hover:text-red-600 gap-1.5 cursor-pointer"
                   title="Log Out"
                 >
                   <LogOut className="h-3.5 w-3.5" />
@@ -234,7 +234,7 @@ export const Navbar: React.FC = () => {
                   <Button
                     variant={currentPath === '/login' ? 'secondary' : 'ghost'}
                     size="sm"
-                    className="h-9 text-xs font-bold hover:text-blue-600 px-3 cursor-pointer"
+                    className="h-9 text-xs font-bold hover:text-emerald-700 px-3 cursor-pointer"
                   >
                     Sign In
                   </Button>
@@ -243,7 +243,7 @@ export const Navbar: React.FC = () => {
                   <Button
                     variant="default"
                     size="sm"
-                    className="h-9 px-3.5 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-600/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                    className="h-9 px-3.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                   >
                     Get Started
                   </Button>
@@ -255,7 +255,7 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="md:hidden p-2 rounded-xl text-stone-600 hover:bg-stone-100 dark:text-stone-300 dark:hover:bg-stone-900 cursor-pointer"
+              className="md:hidden p-2 rounded-xl text-gray-600 hover:bg-gray-100 cursor-pointer"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -265,20 +265,20 @@ export const Navbar: React.FC = () => {
 
         {/* Quick Search Slideout */}
         {searchOpen && (
-          <div className="border-t border-stone-200 bg-white/95 px-4 py-3 dark:border-stone-800 dark:bg-stone-900/95 animate-in fade-in">
+          <div className="border-t border-gray-200 bg-white px-4 py-3 animate-in fade-in">
             <form onSubmit={handleSearchSubmit} className="mx-auto max-w-2xl flex items-center gap-2">
               <div className="relative flex-1">
-                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400 pointer-events-none" />
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
                 <input
                   type="text"
                   placeholder="Quick search catalog (e.g. titanium, audio, watch)..."
                   value={navSearchQuery}
                   onChange={(e) => setNavSearchQuery(e.target.value)}
-                  className="w-full h-10 pl-10 pr-4 text-xs rounded-xl border border-stone-200 bg-stone-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 dark:border-stone-700 dark:bg-stone-800"
+                  className="w-full h-10 pl-10 pr-4 text-xs rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   autoFocus
                 />
               </div>
-              <Button type="submit" size="sm" className="h-10 px-4 text-xs font-bold bg-blue-600 text-white rounded-xl">
+              <Button type="submit" size="sm" className="h-10 px-4 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl">
                 Search
               </Button>
             </form>
@@ -287,30 +287,30 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Drawer Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-stone-200 bg-[#FAF9F6]/98 px-4 pt-3 pb-6 dark:border-stone-800 dark:bg-[#0B0F19]/98 space-y-3 animate-in fade-in">
+          <div className="md:hidden border-b border-gray-200 bg-white px-4 pt-3 pb-6 space-y-3 animate-in fade-in">
             <div className="space-y-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-100 dark:text-stone-200 dark:hover:bg-stone-900"
+                  className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-800 hover:bg-emerald-50 hover:text-emerald-700"
                 >
                   <span>{link.label}</span>
-                  <ChevronRight className="h-4 w-4 text-stone-400" />
+                  <ChevronRight className="h-4 w-4 text-gray-400" />
                 </Link>
               ))}
 
               <Link
                 to="/cart"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 hover:bg-stone-100 dark:text-stone-200 dark:hover:bg-stone-900"
+                className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-gray-800 hover:bg-emerald-50 hover:text-emerald-700"
               >
                 <span className="flex items-center gap-2">
-                  <ShoppingBag className="h-4 w-4 text-blue-600" />
+                  <ShoppingBag className="h-4 w-4 text-emerald-600" />
                   <span>Cart ({cartCount})</span>
                 </span>
-                <ChevronRight className="h-4 w-4 text-stone-400" />
+                <ChevronRight className="h-4 w-4 text-gray-400" />
               </Link>
 
               <button
@@ -319,37 +319,37 @@ export const Navbar: React.FC = () => {
                   setMobileMenuOpen(false);
                   setCalibratorOpen(true);
                 }}
-                className="w-full flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-violet-700 hover:bg-violet-50 dark:text-violet-300 dark:hover:bg-violet-950/40 text-left cursor-pointer"
+                className="w-full flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-emerald-800 hover:bg-emerald-50 text-left cursor-pointer"
               >
                 <span className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-rose-500" />
+                  <Sparkles className="h-4 w-4 text-emerald-600" />
                   <span>AI Style Calibrator</span>
                 </span>
-                <ChevronRight className="h-4 w-4 text-stone-400" />
+                <ChevronRight className="h-4 w-4 text-gray-400" />
               </button>
 
               {currentUser && (
                 <Link
                   to="/dashboard"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-950/40"
+                  className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-semibold text-emerald-700 hover:bg-emerald-50"
                 >
                   <span className="flex items-center gap-2">
                     <LayoutDashboard className="h-4 w-4" />
                     <span>Member Dashboard</span>
                   </span>
-                  <ChevronRight className="h-4 w-4 text-blue-500" />
+                  <ChevronRight className="h-4 w-4 text-emerald-600" />
                 </Link>
               )}
             </div>
 
-            <div className="pt-3 border-t border-stone-200 dark:border-stone-800 flex flex-col gap-2">
+            <div className="pt-3 border-t border-gray-200 flex flex-col gap-2">
               {currentUser ? (
                 <Button
                   variant="destructive"
                   size="sm"
                   onClick={handleLogout}
-                  className="w-full text-xs font-semibold gap-2 justify-center bg-rose-600 hover:bg-rose-700 text-white"
+                  className="w-full text-xs font-semibold gap-2 justify-center bg-red-600 hover:bg-red-700 text-white"
                 >
                   <LogOut className="h-4 w-4" />
                   <span>Log Out</span>
@@ -362,7 +362,7 @@ export const Navbar: React.FC = () => {
                     </Button>
                   </Link>
                   <Link to="/register" onClick={() => setMobileMenuOpen(false)}>
-                    <Button size="sm" className="w-full text-xs font-semibold bg-blue-600 text-white">
+                    <Button size="sm" className="w-full text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 text-white">
                       Get Started
                     </Button>
                   </Link>
