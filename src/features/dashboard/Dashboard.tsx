@@ -31,6 +31,8 @@ import {
   History,
   RotateCcw,
   MessageSquare,
+  TrendingDown,
+  Bell,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -41,6 +43,7 @@ import { useOrdersStore } from '@/store/useOrdersStore';
 import { useWishlistStore } from '@/store/useWishlistStore';
 import { useRecentlyViewedStore } from '@/store/useRecentlyViewedStore';
 import { useReviewsStore } from '@/store/useReviewsStore';
+import { usePriceAdvisorStore } from '@/store/usePriceAdvisorStore';
 import { CURATED_PRODUCTS, getProductById } from '@/services/productsData';
 import { ProductCard } from '@/features/products/ProductCard';
 import { useRouter, Link } from '@/lib/router';
@@ -447,6 +450,33 @@ export const Dashboard: React.FC = () => {
                   </p>
                 </CardContent>
               </Card>
+            </div>
+
+            {/* Price Drop Advisor Banner */}
+            <div className="rounded-3xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-white to-emerald-50/30 p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-600 text-white shadow-xs shrink-0">
+                  <TrendingDown className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-[#1F2937] flex items-center gap-2">
+                    <span>Price Drop Advisor & Live Tracking</span>
+                    <Badge variant="outline" className="border-emerald-300 text-emerald-700 bg-white text-[10px]">
+                      Smart Alerts
+                    </Badge>
+                  </h3>
+                  <p className="text-xs text-gray-600 mt-0.5">
+                    Monitor price drops on your saved products, analyze verified historical snapshots, and receive in-app alerts.
+                  </p>
+                </div>
+              </div>
+
+              <Link to="/price-advisor" className="shrink-0">
+                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs gap-1.5 rounded-xl cursor-pointer">
+                  <span>Open Price Advisor</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              </Link>
             </div>
 
             {/* Main Content Grid: Personalized Picks + Account Security */}

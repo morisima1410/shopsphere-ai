@@ -4,9 +4,11 @@
 // ==============================================================================
 
 import React from 'react';
-import { Heart, ShoppingBag, Trash2, ArrowRight, Sparkles, ShieldAlert } from 'lucide-react';
+import { Heart, ShoppingBag, Trash2, ArrowRight, Sparkles, ShieldAlert, TrendingDown, Bell, Check, Clock } from 'lucide-react';
 import { useWishlistStore } from '@/store/useWishlistStore';
 import { useCartStore } from '@/store/useCartStore';
+import { usePriceAdvisorStore } from '@/store/usePriceAdvisorStore';
+import { useAppStore } from '@/store/useAppStore';
 import { formatCurrency, calculateDiscountPrice } from '@/lib/utils';
 import { Link } from '@/lib/router';
 import { Button } from '@/components/ui/button';
@@ -17,10 +19,24 @@ export const WishlistPage: React.FC = () => {
   const clearWishlist = useWishlistStore((state) => state.clearWishlist);
   const addItemToCart = useCartStore((state) => state.addItem);
 
+  const currentUser = useAppStore((state) => state.currentUser);
+  const userId = currentUser?.id;
+  const trackedProducts = usePriceAdvisorStore((state) => state.trackedProducts);
+  const isTracked = usePriceAdvisorStore((state) => state.isTracked);
+  const toggleTracking = usePriceAdvisorStore((state) => state.toggleTracking);
+  const trackAllWishlistItems = usePriceAdvisorStore((state) => state.trackAllWishlistItems);
+  const getTrackedList = usePriceAdvisorStore((state) => state.getTrackedList);
+
+  const trackedList = React.useMemo(() => {
+    return getTrackedList(userId);
+  }, [trackedProducts, userId, getTrackedList]);
+
   const handleMoveToCart = (product: any) => {
     addItemToCart(product, 1);
     removeItem(product.id);
   };
+
+  const untrackedWishlistCount = items.filter((p) => !isTracked(p.id, userId)).length;
 
   return (
     <div className="w-full bg-[#F9FAFB] text-[#1F2937] pb-24">
@@ -44,16 +60,43 @@ export const WishlistPage: React.FC = () => {
               </p>
             </div>
 
-            {items.length > 0 && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={clearWishlist}
-                className="text-xs font-bold text-rose-600 border-rose-200 hover:bg-rose-50 hover:border-rose-300 cursor-pointer"
-              >
-                Clear Entire Wishlist
-              </Button>
-            )}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <Link to="/price-advisor">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs font-bold text-emerald-700 border-emerald-200 hover:bg-emerald-50 cursor-pointer h-9 gap-1.5"
+                >
+                  <TrendingDown className="h-3.5 w-3.5 text-emerald-600" />
+                  <span>Price Drop Advisor</span>
+                  <span className="rounded-full bg-emerald-100 text-emerald-800 px-1.5 py-0.2 text-[10px] font-bold">
+                    {trackedList.length}
+                  </span>
+                </Button>
+              </Link>
+
+              {items.length > 0 && untrackedWishlistCount > 0 && (
+                <Button
+                  size="sm"
+                  onClick={() => trackAllWishlistItems(items, userId)}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer h-9 gap-1.5"
+                >
+                  <Bell className="h-3.5 w-3.5" />
+                  <span>Track All ({untrackedWishlistCount})</span>
+                </Button>
+              )}
+
+              {items.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={clearWishlist}
+                  className="text-xs font-bold text-rose-600 border-rose-200 hover:bg-rose-50 hover:border-rose-300 cursor-pointer h-9"
+                >
+                  Clear Entire Wishlist
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -136,19 +179,50 @@ export const WishlistPage: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="mt-5 pt-3.5 border-t border-gray-100 flex items-center justify-between gap-3">
-                    <span className="text-lg font-black text-[#1F2937]">
-                      {formatCurrency(discountedPrice)}
-                    </span>
+                  <div className="mt-4 pt-3.5 border-t border-gray-100 flex flex-col gap-2.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg font-black text-[#1F2937]">
+                        {formatCurrency(discountedPrice)}
+                      </span>
 
-                    <Button
-                      size="sm"
-                      onClick={() => handleMoveToCart(product)}
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs gap-1.5 rounded-xl cursor-pointer"
-                    >
-                      <ShoppingBag className="h-3.5 w-3.5" />
-                      <span>Move to Cart</span>
-                    </Button>
+                      {/* Track Price / Stop Tracking Toggle */}
+                      {isTracked(product.id, userId) ? (
+                        <button
+                          type="button"
+                          onClick={() => toggleTracking(product, userId)}
+                          className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-800 border border-emerald-200 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-200 transition-colors cursor-pointer"
+                          title="Click to stop tracking price"
+                        >
+                          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                          <span>Tracking Active</span>
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => toggleTracking(product, userId)}
+                          className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-semibold text-gray-700 hover:bg-emerald-600 hover:text-white border border-gray-200 hover:border-emerald-600 transition-colors cursor-pointer"
+                          title="Start tracking price drops for this product"
+                        >
+                          <TrendingDown className="h-3.5 w-3.5" />
+                          <span>Track Price</span>
+                        </button>
+                      )}
+                    </div>
+
+                    <div className="flex items-center justify-between gap-2">
+                      <Link to="/price-advisor" className="text-[11px] font-semibold text-emerald-700 hover:underline">
+                        View Price Advisor →
+                      </Link>
+
+                      <Button
+                        size="sm"
+                        onClick={() => handleMoveToCart(product)}
+                        className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs gap-1.5 rounded-xl cursor-pointer"
+                      >
+                        <ShoppingBag className="h-3.5 w-3.5" />
+                        <span>Move to Cart</span>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               );

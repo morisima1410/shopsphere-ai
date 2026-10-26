@@ -16,6 +16,8 @@ import {
   Check,
   Tag,
   Share2,
+  TrendingDown,
+  LineChart,
 } from 'lucide-react';
 import type { Product } from '@/types';
 import { CURATED_PRODUCTS, getProductById } from '@/services/productsData';
@@ -25,6 +27,8 @@ import { useRecentlyViewedStore } from '@/store/useRecentlyViewedStore';
 import { useCompareStore } from '@/store/useCompareStore';
 import { useReviewsStore } from '@/store/useReviewsStore';
 import { useAppStore } from '@/store/useAppStore';
+import { usePriceAdvisorStore } from '@/store/usePriceAdvisorStore';
+import { PriceHistoryChart } from '@/features/price-advisor';
 import { formatCurrency, calculateDiscountPrice } from '@/lib/utils';
 import { Link, useRouter } from '@/lib/router';
 import { Button } from '@/components/ui/button';
@@ -53,6 +57,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
   const compareProducts = useCompareStore((state) => state.products);
   const toggleCompare = useCompareStore((state) => state.toggleProduct);
   const isInCompare = useMemo(() => compareProducts.some((p) => p.id === productId), [compareProducts, productId]);
+
+  const userId = currentUser?.id;
+  const trackedProducts = usePriceAdvisorStore((state) => state.trackedProducts);
+  const togglePriceTracking = usePriceAdvisorStore((state) => state.toggleTracking);
+
+  const storageKey = `${userId !== undefined && userId !== null ? String(userId) : 'guest'}_${productId}`;
+  const trackedData = trackedProducts[storageKey];
+  const isTracked = Boolean(trackedData);
+  const [showPriceHistory, setShowPriceHistory] = useState(false);
 
   const allReviews = useReviewsStore((state) => state.reviews);
   const addReview = useReviewsStore((state) => state.addReview);
@@ -357,6 +370,62 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ productId 
                     View Matrix
                   </Button>
                 </Link>
+              </div>
+
+              {/* Price Drop Advisor Section */}
+              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <TrendingDown className="h-4 w-4 text-emerald-600" />
+                    <span className="text-xs font-bold text-emerald-950">
+                      Price Drop Advisor
+                    </span>
+                  </div>
+
+                  <Link to="/price-advisor" className="text-[11px] font-semibold text-emerald-700 hover:underline">
+                    Advisor Hub →
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={() => product && togglePriceTracking(product, userId)}
+                    className={`h-9 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+                      isTracked
+                        ? 'bg-emerald-600 hover:bg-rose-600 text-white'
+                        : 'bg-white hover:bg-emerald-50 text-emerald-800 border border-emerald-300'
+                    }`}
+                  >
+                    <span className={`h-2 w-2 rounded-full mr-1.5 ${isTracked ? 'bg-white animate-pulse' : 'bg-emerald-500'}`} />
+                    <span>{isTracked ? 'Tracking Active (Click to Stop)' : 'Track Price Drops'}</span>
+                  </Button>
+
+                  {isTracked && trackedData && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setShowPriceHistory((prev) => !prev)}
+                      className="h-9 text-xs font-bold rounded-xl border-emerald-200 text-emerald-800 hover:bg-white cursor-pointer"
+                    >
+                      <LineChart className="h-3.5 w-3.5 mr-1 text-emerald-600" />
+                      <span>{showPriceHistory ? 'Hide History' : 'View Price History'}</span>
+                    </Button>
+                  )}
+                </div>
+
+                {/* Expanded Price History Chart */}
+                {showPriceHistory && trackedData && (
+                  <div className="pt-2">
+                    <PriceHistoryChart
+                      productTitle={trackedData.productTitle}
+                      snapshots={trackedData.priceSnapshots}
+                      trackedAt={trackedData.trackedAt}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 

@@ -30,11 +30,13 @@ import { Input } from '@/components/ui/input';
 import { useCartStore } from '@/store/useCartStore';
 import { useCompareStore } from '@/store/useCompareStore';
 import { formatCurrency, calculateDiscountPrice } from '@/lib/utils';
-import { Link } from '@/lib/router';
+import { Link, useRouter } from '@/lib/router';
+import { SmartSearchBar, normalizeText, POPULAR_SEARCHES, getSmartRecommendations } from '@/features/search';
 
 const ITEMS_PER_PAGE = 6;
 
 export const ShopPage: React.FC = () => {
+  const { currentPath } = useRouter();
   const [products, setProducts] = useState<Product[]>(CURATED_PRODUCTS);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -77,14 +79,15 @@ export const ShopPage: React.FC = () => {
     };
   }, []);
 
-  // Sync with URL query parameter on mount if present
+  // Sync with URL query parameter on navigation & mount if present
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const searchString = window.location.search || (currentPath.includes('?') ? currentPath.slice(currentPath.indexOf('?')) : '');
+    const params = new URLSearchParams(searchString);
     const q = params.get('q');
     const cat = params.get('category');
-    if (q) setSearchQuery(q);
-    if (cat) setSelectedCategory(cat);
-  }, []);
+    if (q !== null) setSearchQuery(q);
+    if (cat !== null) setSelectedCategory(cat);
+  }, [currentPath]);
 
   // Filter & Sort Logic
   const filteredProducts = useMemo(() => {
@@ -115,15 +118,22 @@ export const ShopPage: React.FC = () => {
           return false;
         }
 
-        // Search Query filter
+        // Intelligent Token & Multi-Field Search Query filter
         if (searchQuery.trim()) {
-          const query = searchQuery.toLowerCase().trim();
-          const matchTitle = p.title.toLowerCase().includes(query);
-          const matchDesc = p.description.toLowerCase().includes(query);
-          const matchCategory = p.category.toLowerCase().includes(query);
-          const matchBrand = p.brand?.toLowerCase().includes(query);
-          const matchTags = p.tags?.some((t) => t.toLowerCase().includes(query));
-          return matchTitle || matchDesc || matchCategory || matchBrand || matchTags;
+          const query = normalizeText(searchQuery);
+          const titleNorm = normalizeText(p.title);
+          const descNorm = normalizeText(p.description || '');
+          const categoryNorm = normalizeText(p.category);
+          const brandNorm = normalizeText(p.brand || '');
+          const tagsNorm = (p.tags || []).map((t) => normalizeText(t)).join(' ');
+
+          const fullCombined = `${titleNorm} ${brandNorm} ${categoryNorm} ${tagsNorm} ${descNorm}`;
+          if (fullCombined.includes(query)) return true;
+
+          // Multi-token match: all tokens in query must match
+          const queryTokens = query.split(' ').filter(Boolean);
+          const allTokensMatch = queryTokens.every((token) => fullCombined.includes(token));
+          return allTokensMatch;
         }
 
         return true;
@@ -201,25 +211,18 @@ export const ShopPage: React.FC = () => {
         {/* Search, Filter & Sort Controls Panel */}
         <div className="flex flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
-            {/* Search Input */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
-              <Input
-                type="text"
-                placeholder="Search products by title, material, or keyword..."
+            {/* Smart Search Bar */}
+            <div className="flex-1">
+              <SmartSearchBar
+                placeholder="Search products by title, category, brand, or material..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-11 text-xs border-gray-200 bg-gray-50/50 hover:bg-white focus:bg-white focus-visible:ring-emerald-500 rounded-xl"
+                onChange={(val) => setSearchQuery(val)}
+                onSearchSubmit={(val) => setSearchQuery(val)}
+                onProductSelect={(product) => {
+                  setQuickViewProduct(product);
+                  setQuickViewQuantity(1);
+                }}
               />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 cursor-pointer"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              )}
             </div>
 
             {/* Sort Dropdown */}
@@ -348,19 +351,72 @@ export const ShopPage: React.FC = () => {
             ))}
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-gray-300 bg-white p-12 text-center space-y-4">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-100 text-gray-500">
-              <ShoppingBag className="h-6 w-6" />
+          <div className="rounded-3xl border border-dashed border-gray-300 bg-white p-8 sm:p-12 text-center space-y-6">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200">
+              <Search className="h-6 w-6" />
             </div>
-            <div className="space-y-1">
-              <h3 className="text-lg font-bold text-[#1F2937]">No Matching Products Found</h3>
-              <p className="text-xs text-gray-500 max-w-sm mx-auto">
-                No items match your active search, price, and category filters. Try adjusting your parameters.
+
+            <div className="space-y-1.5 max-w-md mx-auto">
+              <h3 className="text-xl font-bold text-[#1F2937]">No Matching Products Found</h3>
+              <p className="text-xs text-gray-500 leading-relaxed">
+                {searchQuery
+                  ? `No catalog items match your search for "${searchQuery}" with the active filters.`
+                  : 'No items match your active price, rating, and category filters. Try adjusting your parameters.'}
               </p>
             </div>
-            <Button onClick={clearFilters} size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold cursor-pointer">
-              Clear All Filters
-            </Button>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Button
+                onClick={clearFilters}
+                size="sm"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-10 px-5 rounded-xl cursor-pointer shadow-xs"
+              >
+                Clear All Filters
+              </Button>
+            </div>
+
+            {/* Popular Search Suggestions */}
+            <div className="pt-4 border-t border-gray-100 max-w-xl mx-auto space-y-2">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 flex items-center justify-center gap-1.5">
+                <Sparkles className="h-3.5 w-3.5 text-emerald-600" />
+                <span>Try searching for these popular items:</span>
+              </span>
+              <div className="flex flex-wrap items-center justify-center gap-1.5">
+                {POPULAR_SEARCHES.slice(0, 6).map((pop) => (
+                  <button
+                    key={pop}
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery(pop);
+                      setSelectedCategory('all');
+                    }}
+                    className="rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 px-3 py-1 text-xs font-semibold text-emerald-800 transition-all cursor-pointer"
+                  >
+                    {pop}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Smart Fallback Recommendations Section */}
+            <div className="pt-6 border-t border-gray-100 text-left space-y-4">
+              <div className="text-center sm:text-left">
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 block">
+                  Recommended For You
+                </span>
+                <h4 className="text-lg font-black text-[#1F2937]">
+                  Curated Catalog Highlights
+                </h4>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                {getSmartRecommendations(products, 3).map((recProduct) => (
+                  <div key={recProduct.id} className="relative group/rec">
+                    <ProductCard product={recProduct} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           <div className="space-y-8">

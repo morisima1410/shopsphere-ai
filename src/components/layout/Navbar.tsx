@@ -14,6 +14,7 @@ import {
   LayoutDashboard,
   ChevronRight,
   Sliders,
+  Bell,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -23,8 +24,10 @@ import { useAppStore } from '@/store/useAppStore';
 import { useCartStore } from '@/store/useCartStore';
 import { useWishlistStore } from '@/store/useWishlistStore';
 import { useCompareStore } from '@/store/useCompareStore';
+import { usePriceAdvisorStore } from '@/store/usePriceAdvisorStore';
 import { logoutUser } from '@/features/auth/authService';
 import { AIPersonalizationModal } from '@/features/shopping-assistant';
+import { SmartSearchBar } from '@/features/search';
 
 export const Navbar: React.FC = () => {
   const { currentPath, navigate } = useRouter();
@@ -39,10 +42,17 @@ export const Navbar: React.FC = () => {
   const cartItems = useCartStore((state) => state.items);
   const wishlistItems = useWishlistStore((state) => state.items);
   const compareProducts = useCompareStore((state) => state.products);
+  const advisorAlerts = usePriceAdvisorStore((state) => state.alerts);
 
   const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const wishlistCount = wishlistItems.length;
   const compareCount = compareProducts.length;
+
+  const currentUserId = currentUser?.id !== undefined ? String(currentUser.id) : 'guest';
+  const unreadAlertsCount = advisorAlerts.filter((a) => {
+    const alertUser = a.userId !== undefined ? String(a.userId) : 'guest';
+    return alertUser === currentUserId && !a.read;
+  }).length;
 
   const handleLogout = async () => {
     try {
@@ -66,6 +76,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Shop', href: '/shop' },
+    { label: 'Price Advisor', href: '/price-advisor' },
     { label: 'Compare', href: '/compare' },
     { label: 'Reviews', href: '/reviews' },
     { label: 'Wishlist', href: '/wishlist' },
@@ -174,6 +185,21 @@ export const Navbar: React.FC = () => {
               )}
             </Link>
 
+            {/* Price Alerts Bell Icon with Live Drop Counter */}
+            <Link
+              to="/price-advisor"
+              className="relative p-2 rounded-xl text-gray-600 hover:bg-gray-100 hover:text-emerald-700 transition-colors"
+              aria-label="Price Drop Advisor & Alerts"
+              title="Price Drop Advisor & Alerts"
+            >
+              <Bell className="h-4 w-4" />
+              {unreadAlertsCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-500 text-[9px] font-black text-white shadow-xs animate-pulse">
+                  {unreadAlertsCount}
+                </span>
+              )}
+            </Link>
+
             {/* Wishlist Icon with Live Counter */}
             <Link
               to="/wishlist"
@@ -263,25 +289,35 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
 
-        {/* Quick Search Slideout */}
+        {/* Smart Search Slideout */}
         {searchOpen && (
-          <div className="border-t border-gray-200 bg-white px-4 py-3 animate-in fade-in">
-            <form onSubmit={handleSearchSubmit} className="mx-auto max-w-2xl flex items-center gap-2">
-              <div className="relative flex-1">
-                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                <input
-                  type="text"
-                  placeholder="Quick search catalog (e.g. titanium, audio, watch)..."
+          <div className="border-t border-gray-200 bg-white px-4 py-3.5 shadow-lg animate-in fade-in slide-in-from-top-1">
+            <div className="mx-auto max-w-2xl flex items-center gap-2.5">
+              <div className="flex-1">
+                <SmartSearchBar
+                  placeholder="Smart search catalog (e.g. titanium, audio, watch, living)..."
                   value={navSearchQuery}
-                  onChange={(e) => setNavSearchQuery(e.target.value)}
-                  className="w-full h-10 pl-10 pr-4 text-xs rounded-xl border border-gray-200 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  onChange={(val) => setNavSearchQuery(val)}
+                  onSearchSubmit={(submittedQuery) => {
+                    navigate(`/shop?q=${encodeURIComponent(submittedQuery)}`);
+                    setSearchOpen(false);
+                  }}
+                  onProductSelect={(product) => {
+                    navigate(`/product/${product.id}`);
+                    setSearchOpen(false);
+                  }}
                   autoFocus
                 />
               </div>
-              <Button type="submit" size="sm" className="h-10 px-4 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl">
-                Search
-              </Button>
-            </form>
+              <button
+                type="button"
+                onClick={() => setSearchOpen(false)}
+                className="p-2 rounded-xl text-gray-400 hover:text-gray-700 hover:bg-gray-100 cursor-pointer transition-colors"
+                aria-label="Close search"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         )}
 

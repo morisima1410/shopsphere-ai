@@ -17,6 +17,7 @@ import { ComparePage } from './features/compare';
 import { ReviewsPage } from './features/reviews';
 import { AdminDashboard } from './features/admin';
 import { AboutPage } from './features/about/AboutPage';
+import { PriceDropAdvisorPage } from './features/price-advisor';
 import { NotFoundPage } from './features/not-found/NotFoundPage';
 
 function AppContent() {
@@ -47,6 +48,9 @@ function AppContent() {
       return <ShopPage />;
     case '/wishlist':
       return <WishlistPage />;
+    case '/price-advisor':
+    case '/price-drops':
+      return <PriceDropAdvisorPage />;
     case '/cart':
       return <CartPage />;
     case '/checkout':

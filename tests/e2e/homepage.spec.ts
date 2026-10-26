@@ -52,4 +52,26 @@ test.describe('ShopSphere AI App & Authentication E2E', () => {
     await page.getByRole('button', { name: /send reset link/i }).click();
     await expect(page.getByText(/reset instructions simulated/i)).toBeVisible();
   });
+
+  test('should navigate to Price Drop Advisor and manage price tracking', async ({ page }) => {
+    await page.goto('/price-advisor');
+    await expect(page.getByRole('heading', { name: /smart price drop advisor/i })).toBeVisible();
+    await expect(page.getByText(/tracked items/i)).toBeVisible();
+    await expect(page.getByText(/active price drops/i)).toBeVisible();
+
+    // Click track top featured items
+    const trackStarterBtn = page.getByRole('button', { name: /track top 3 featured products/i });
+    if (await trackStarterBtn.isVisible()) {
+      await trackStarterBtn.click();
+    }
+
+    // Verify products are tracked
+    await expect(page.getByText(/tracking active/i).first()).toBeVisible();
+  });
+
+  test('should display Price Drop Advisor link on Wishlist page', async ({ page }) => {
+    await page.goto('/wishlist');
+    await expect(page.getByRole('heading', { name: /my saved wishlist/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /price drop advisor/i }).first()).toBeVisible();
+  });
 });

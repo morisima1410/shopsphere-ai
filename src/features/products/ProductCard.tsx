@@ -3,11 +3,13 @@
 // ==============================================================================
 
 import React, { useState } from 'react';
-import { Heart, ShoppingBag, Star, Sparkles, Check, ArrowUpRight, Sliders } from 'lucide-react';
+import { Heart, ShoppingBag, Star, Sparkles, Check, ArrowUpRight, Sliders, TrendingDown } from 'lucide-react';
 import type { Product } from '@/types';
 import { useWishlistStore } from '@/store/useWishlistStore';
 import { useCartStore } from '@/store/useCartStore';
 import { useCompareStore } from '@/store/useCompareStore';
+import { usePriceAdvisorStore } from '@/store/usePriceAdvisorStore';
+import { useAppStore } from '@/store/useAppStore';
 import { formatCurrency, calculateDiscountPrice } from '@/lib/utils';
 import { Link } from '@/lib/router';
 
@@ -25,6 +27,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, matchScore })
 
   const isInWishlist = wishlistItems.some((p) => p.id === product.id);
   const isInCompare = compareProducts.some((p) => p.id === product.id);
+
+  const currentUser = useAppStore((state) => state.currentUser);
+  const userId = currentUser?.id;
+  const trackedProducts = usePriceAdvisorStore((state) => state.trackedProducts);
+  const toggleTracking = usePriceAdvisorStore((state) => state.toggleTracking);
+  const isTracked = Boolean(trackedProducts[`${userId !== undefined && userId !== null ? String(userId) : 'guest'}_${product.id}`]);
 
   const [addedAnimation, setAddedAnimation] = useState(false);
 
@@ -72,6 +80,25 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, matchScore })
             title={isInCompare ? 'In Comparison Matrix' : 'Add to Compare'}
           >
             <Sliders className="h-3.5 w-3.5" />
+          </button>
+
+          {/* Price Tracking Action */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              toggleTracking(product, userId);
+            }}
+            className={`absolute top-3 right-12 flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-md transition-all cursor-pointer ${
+              isTracked
+                ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                : 'bg-white/90 text-gray-700 hover:text-emerald-700 hover:bg-white shadow-xs'
+            }`}
+            aria-label={isTracked ? 'Stop price tracking' : 'Track price drops'}
+            title={isTracked ? 'Price Tracking Active (Click to Stop)' : 'Track Price Drops'}
+          >
+            <TrendingDown className="h-3.5 w-3.5" />
           </button>
 
           {/* Wishlist Heart Action */}
