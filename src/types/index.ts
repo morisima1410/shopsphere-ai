@@ -159,3 +159,4 @@ export interface ApiError {
 }
 
 export * from './priceAdvisor';
+export * from './budget';

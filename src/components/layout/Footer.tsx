@@ -22,47 +22,47 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="border-t border-gray-800 bg-[#111827] text-gray-300 transition-colors">
+    <footer className="border-t border-[#12343B] bg-[#0B1F26] text-gray-300 transition-colors">
       {/* 1. Value Pillars & Trust Banner */}
-      <div className="border-b border-gray-800 bg-[#0F172A] py-8">
+      <div className="border-b border-[#12343B] bg-[#12343B]/60 py-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="flex items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 shadow-inner">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/80 text-mint-accent border border-emerald-800/50 shadow-inner">
               <Truck className="h-5 w-5" />
             </div>
             <div>
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">Carbon-Neutral Delivery</h4>
-              <p className="text-[11px] text-gray-400 font-normal">Express worldwide priority fulfillment</p>
+              <p className="text-[11px] text-gray-300 font-normal">Express worldwide priority fulfillment</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 shadow-inner">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/80 text-mint-accent border border-emerald-800/50 shadow-inner">
               <RefreshCw className="h-5 w-5" />
             </div>
             <div>
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">30-Day Effortless Returns</h4>
-              <p className="text-[11px] text-gray-400 font-normal">Complimentary return concierge</p>
+              <p className="text-[11px] text-gray-300 font-normal">Complimentary return concierge</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 shadow-inner">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/80 text-mint-accent border border-emerald-800/50 shadow-inner">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <div>
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">Firebase Auth Secured</h4>
-              <p className="text-[11px] text-gray-400 font-normal">Encrypted identity token protection</p>
+              <p className="text-[11px] text-gray-300 font-normal">Encrypted identity token protection</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/60 text-emerald-400 border border-emerald-800/50 shadow-inner">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-emerald-950/80 text-mint-accent border border-emerald-800/50 shadow-inner">
               <Headphones className="h-5 w-5" />
             </div>
             <div>
               <h4 className="text-xs font-bold text-white uppercase tracking-wider">24/7 AI Concierge</h4>
-              <p className="text-[11px] text-gray-400 font-normal">Real-time neural styling guidance</p>
+              <p className="text-[11px] text-gray-300 font-normal">Real-time neural styling guidance</p>
             </div>
           </div>
         </div>
@@ -79,11 +79,11 @@ export const Footer: React.FC = () => {
               </div>
               <span className="flex items-center gap-1.5 text-xl font-black tracking-tight text-white">
                 {APP_CONFIG.name}
-                <Sparkles className="h-4 w-4 text-emerald-400" />
+                <Sparkles className="h-4 w-4 text-mint-accent" />
               </span>
             </Link>
 
-            <p className="text-xs text-gray-400 leading-relaxed max-w-sm font-normal">
+            <p className="text-xs text-gray-300 leading-relaxed max-w-sm font-normal">
               Curated intelligence meets modern e-commerce. Hyper-personalized product discovery, real-time price tracking, and style matching calibrated exclusively to your lifestyle.
             </p>
 
@@ -93,8 +93,8 @@ export const Footer: React.FC = () => {
                 Join the VIP Drop Newsletter
               </h4>
               {subscribed ? (
-                <div className="flex items-center gap-2 rounded-xl bg-emerald-950/60 border border-emerald-800/80 p-3 text-xs text-emerald-300">
-                  <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
+                <div className="flex items-center gap-2 rounded-xl bg-emerald-950/60 border border-emerald-800/80 p-3 text-xs text-mint-accent">
+                  <CheckCircle2 className="h-4 w-4 text-mint-accent shrink-0" />
                   <span>You are on the VIP drop list! Welcome to ShopSphere AI.</span>
                 </div>
               ) : (
@@ -104,7 +104,7 @@ export const Footer: React.FC = () => {
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Enter your email"
-                    className="h-10 text-xs bg-gray-900 border-gray-700 text-white placeholder:text-gray-500 focus-visible:ring-emerald-500 rounded-xl"
+                    className="h-10 text-xs bg-[#12343B] border-emerald-900 text-white placeholder:text-gray-400 focus-visible:ring-emerald-500 rounded-xl"
                     required
                   />
                   <Button type="submit" size="sm" className="h-10 px-4 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-md cursor-pointer">
@@ -118,13 +118,15 @@ export const Footer: React.FC = () => {
           {/* Column 1: Discover */}
           <div className="space-y-3.5">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">Discover</h4>
-            <ul className="space-y-2.5 text-xs text-gray-400">
-              <li><Link to="/shop" className="hover:text-emerald-400 transition-colors">All Products Catalog</Link></li>
-              <li><Link to="/orders" className="hover:text-emerald-400 transition-colors">Orders & Tracking</Link></li>
-              <li><Link to="/compare" className="hover:text-emerald-400 transition-colors">Product Comparison Matrix</Link></li>
-              <li><Link to="/reviews" className="hover:text-emerald-400 transition-colors">Customer Reviews</Link></li>
-              <li><Link to="/wishlist" className="hover:text-emerald-400 transition-colors">Saved Wishlist</Link></li>
-              <li><Link to="/admin" className="hover:text-emerald-400 transition-colors">Admin Console</Link></li>
+            <ul className="space-y-2.5 text-xs text-gray-300">
+              <li><Link to="/shop" className="hover:text-mint-accent transition-colors">All Products Catalog</Link></li>
+              <li><Link to="/budget" className="hover:text-mint-accent transition-colors">Smart Budget Guardian</Link></li>
+              <li><Link to="/price-advisor" className="hover:text-mint-accent transition-colors">Price Drop Advisor</Link></li>
+              <li><Link to="/orders" className="hover:text-mint-accent transition-colors">Orders & Tracking</Link></li>
+              <li><Link to="/compare" className="hover:text-mint-accent transition-colors">Product Comparison Matrix</Link></li>
+              <li><Link to="/reviews" className="hover:text-mint-accent transition-colors">Customer Reviews</Link></li>
+              <li><Link to="/wishlist" className="hover:text-mint-accent transition-colors">Saved Wishlist</Link></li>
+              <li><Link to="/admin" className="hover:text-mint-accent transition-colors">Admin Console</Link></li>
             </ul>
           </div>
 

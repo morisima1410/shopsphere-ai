@@ -28,6 +28,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { APP_CONFIG } from '@/config/constants';
 import { getRecommendationsByStrategy } from '@/features/recommendations/recommendationEngine';
+import { SmartBudgetGuardianCard } from '@/features/budget';
 import type { Product } from '@/types';
 
 export const CartPage: React.FC = () => {
@@ -433,8 +434,11 @@ export const CartPage: React.FC = () => {
               )}
             </div>
 
-            {/* Right 4 Columns: Order Summary Card */}
+            {/* Right 4 Columns: Budget Health & Order Summary Card */}
             <div className="lg:col-span-4 space-y-6">
+              {/* Live Budget Guardian Affordability Check */}
+              <SmartBudgetGuardianCard variant="compact" />
+
               <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-xl space-y-5">
                 <h2 className="text-lg font-black text-[#1F2937] border-b border-gray-100 pb-3">
                   Order Summary

@@ -18,6 +18,7 @@ import { ReviewsPage } from './features/reviews';
 import { AdminDashboard } from './features/admin';
 import { AboutPage } from './features/about/AboutPage';
 import { PriceDropAdvisorPage } from './features/price-advisor';
+import { BudgetPage } from './features/budget';
 import { NotFoundPage } from './features/not-found/NotFoundPage';
 
 function AppContent() {
@@ -51,6 +52,9 @@ function AppContent() {
     case '/price-advisor':
     case '/price-drops':
       return <PriceDropAdvisorPage />;
+    case '/budget':
+    case '/budget-guardian':
+      return <BudgetPage />;
     case '/cart':
       return <CartPage />;
     case '/checkout':

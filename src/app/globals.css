@@ -31,6 +31,14 @@
     --ring: 160 84% 31%; /* #059669 */
 
     --radius: 0.75rem;
+
+    /* Theme Tokens: Midnight Teal + Emerald Glow + Mint Accents */
+    --midnight-teal: #0B1F26;
+    --deep-teal: #12343B;
+    --primary-emerald: #059669;
+    --dark-emerald: #047857;
+    --mint-accent: #A7F3D0;
+    --light-mint: #ECFDF5;
   }
 
   .dark {
@@ -66,8 +74,8 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: -0.011em;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.015em;
 }
 
 body {
@@ -89,6 +97,45 @@ body {
 
 .animate-float {
   animation: float-subtle 6s ease-in-out infinite;
+}
+
+/* ShopSphere AI Custom Theme Utilities */
+.bg-midnight-teal {
+  background-color: #0B1F26;
+}
+
+.bg-deep-teal {
+  background-color: #12343B;
+}
+
+.bg-light-mint {
+  background-color: #ECFDF5;
+}
+
+.text-mint-accent {
+  color: #A7F3D0;
+}
+
+.border-mint-accent {
+  border-color: #A7F3D0;
+}
+
+.emerald-glow {
+  box-shadow: 0 10px 30px -10px rgba(5, 150, 105, 0.45);
+}
+
+.emerald-glow-lg {
+  box-shadow: 0 16px 45px -12px rgba(5, 150, 105, 0.55);
+}
+
+.teal-card-gradient {
+  background: linear-gradient(135deg, #0B1F26 0%, #12343B 100%);
+}
+
+.teal-hero-gradient {
+  background: radial-gradient(circle at 85% 15%, rgba(5, 150, 105, 0.22) 0%, transparent 50%),
+              radial-gradient(circle at 15% 85%, rgba(18, 52, 59, 0.6) 0%, transparent 60%),
+              #0B1F26;
 }
 
 @media (prefers-reduced-motion: reduce) {

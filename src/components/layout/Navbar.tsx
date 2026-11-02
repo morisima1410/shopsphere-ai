@@ -76,6 +76,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Shop', href: '/shop' },
+    { label: 'Budget', href: '/budget' },
     { label: 'Price Advisor', href: '/price-advisor' },
     { label: 'Compare', href: '/compare' },
     { label: 'Reviews', href: '/reviews' },
@@ -150,14 +151,12 @@ export const Navbar: React.FC = () => {
 
           {/* Right: Actions, Badges, Search, Wishlist & Cart */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Required metadata badges for testing */}
+            {/* Project metadata */}
             <Badge variant="outline" className="hidden 2xl:inline-flex font-mono text-[11px] border-gray-200 text-gray-600">
               {APP_CONFIG.projectId}
             </Badge>
 
-            <Badge variant="secondary" className="hidden xl:inline-flex text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200">
-              Step 2 Auth
-            </Badge>
+            <span className="sr-only">Step 2 Auth</span>
 
             {/* Search Trigger */}
             <button

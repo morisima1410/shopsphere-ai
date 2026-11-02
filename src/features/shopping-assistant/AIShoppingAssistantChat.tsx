@@ -48,6 +48,12 @@ export interface ChatMessage {
   isError?: boolean;
 }
 
+export const openAIAssistant = () => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('open-shopsphere-assistant'));
+  }
+};
+
 export const AIShoppingAssistantChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
@@ -61,6 +67,16 @@ export const AIShoppingAssistantChat: React.FC = () => {
   // Active conversational context (Section 7.4)
   const [activeContext, setActiveContext] = useState<StructuredIntent>({});
   const [lastShownProducts, setLastShownProducts] = useState<Product[]>([]);
+
+  // Listen for programmatic open requests (e.g. from hero "Meet Your AI Assistant" button)
+  useEffect(() => {
+    const handleOpen = () => {
+      setIsOpen(true);
+      setIsMinimized(false);
+    };
+    window.addEventListener('open-shopsphere-assistant', handleOpen);
+    return () => window.removeEventListener('open-shopsphere-assistant', handleOpen);
+  }, []);
 
   // Initial greeting
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -353,20 +369,20 @@ export const AIShoppingAssistantChat: React.FC = () => {
               : 'h-[580px] max-h-[85vh] w-[95vw] sm:w-[420px]'
           }`}
         >
-          {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-gray-200 bg-white px-5 py-3.5 rounded-t-3xl shrink-0">
+          {/* Header Bar: Midnight Teal + Mint Accents */}
+          <div className="flex items-center justify-between border-b border-[#12343B] bg-[#0B1F26] px-5 py-3.5 rounded-t-3xl shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
-                <Sparkles className="h-4 w-4" />
+                <Sparkles className="h-4 w-4 text-mint-accent" />
               </div>
               <div>
-                <h3 className="text-xs font-black text-[#1F2937] flex items-center gap-1.5">
+                <h3 className="text-xs font-black text-white flex items-center gap-1.5">
                   <span>Shopping Assistant</span>
-                  <Badge variant="outline" className="text-[9px] py-0 px-1.5 text-emerald-700 border-emerald-200 bg-emerald-50">
+                  <Badge variant="outline" className="text-[9px] py-0 px-1.5 text-mint-accent border-emerald-500/40 bg-emerald-950/60 font-mono">
                     Rule-Based Mock AI
                   </Badge>
                 </h3>
-                <p className="text-[10px] text-gray-400">Natural intent parsing & refinement</p>
+                <p className="text-[10px] text-gray-300">Natural intent parsing & refinement</p>
               </div>
             </div>
 
@@ -374,7 +390,7 @@ export const AIShoppingAssistantChat: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsMinimized((prev) => !prev)}
-                className="p-1.5 text-gray-400 hover:text-gray-700 rounded-lg cursor-pointer"
+                className="p-1.5 text-gray-300 hover:text-white rounded-lg cursor-pointer"
                 title={isMinimized ? 'Expand' : 'Minimize'}
               >
                 {isMinimized ? <Maximize2 className="h-3.5 w-3.5" /> : <Minimize2 className="h-3.5 w-3.5" />}
@@ -382,7 +398,7 @@ export const AIShoppingAssistantChat: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 text-gray-400 hover:text-gray-700 rounded-lg cursor-pointer"
+                className="p-1.5 text-gray-300 hover:text-white rounded-lg cursor-pointer"
                 title="Close chat"
               >
                 <X className="h-4 w-4" />

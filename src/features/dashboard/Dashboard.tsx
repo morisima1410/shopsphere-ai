@@ -50,6 +50,7 @@ import { useRouter, Link } from '@/lib/router';
 import { logoutUser, resetPassword } from '@/features/auth/authService';
 import { getFirebaseErrorMessage } from '@/firebase';
 import { formatCurrency } from '@/lib/utils';
+import { SmartBudgetGuardianCard } from '@/features/budget';
 
 interface SavedAddress {
   id: string;
@@ -74,7 +75,7 @@ export const Dashboard: React.FC = () => {
   const allReviews = useReviewsStore((state) => state.reviews);
 
   const [activeTab, setActiveTab] = useState<
-    'overview' | 'orders' | 'addresses' | 'reviews' | 'recently_viewed' | 'preferences' | 'security'
+    'overview' | 'orders' | 'budget' | 'addresses' | 'reviews' | 'recently_viewed' | 'preferences' | 'security'
   >('overview');
 
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -337,6 +338,7 @@ export const Dashboard: React.FC = () => {
           {[
             { id: 'overview', label: 'Overview & Recommendations' },
             { id: 'orders', label: `My Orders (${orders.length})` },
+            { id: 'budget', label: 'Budget Guardian' },
             { id: 'addresses', label: `Addresses (${addresses.length})` },
             { id: 'reviews', label: `My Reviews (${userReviews.length})` },
             { id: 'recently_viewed', label: `Recently Viewed (${recentlyViewedProducts.length})` },
@@ -770,6 +772,13 @@ export const Dashboard: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+        )}
+
+        {/* Tab: Smart Budget Guardian */}
+        {activeTab === 'budget' && (
+          <div className="space-y-6 animate-in fade-in">
+            <SmartBudgetGuardianCard variant="full" />
           </div>
         )}
 
